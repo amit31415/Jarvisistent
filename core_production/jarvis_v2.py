@@ -94,7 +94,7 @@ jarvis_tools = [
     search_in_file,
     get_current_time,
     shutdown_system,
-    types.Tool(google_search=types.GoogleSearch())
+    
 ]
 
 

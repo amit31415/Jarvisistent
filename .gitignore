@@ -1,0 +1,3 @@
+core_production/credentials.json
+core_production/token.json
+.env

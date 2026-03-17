@@ -1,0 +1,198 @@
+import speech_recognition as sr
+import os
+import subprocess
+import re
+import sys
+import time
+import struct
+import pvporcupine
+import pyaudio
+from dotenv import load_dotenv
+from ctypes import *
+from google import genai
+
+# --- 1. השתקת שגיאות ALSA ---
+ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+def py_error_handler(filename, line, function, err, fmt):
+    pass
+c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+try:
+    asound = cdll.LoadLibrary('libasound.so')
+    asound.snd_lib_error_set_handler(c_error_handler)
+except:
+    pass
+
+# --- 2. טעינת מפתחות מ-.env ---
+load_dotenv()
+GEMINI_KEY = os.getenv("GEMINI_KEY")
+PORCUPINE_KEY = os.getenv("PORCUPINE_KEY")
+
+if not GEMINI_KEY or not PORCUPINE_KEY:
+    print("\n❌ Error: Missing GEMINI_KEY or PORCUPINE_KEY in .env file.")
+    sys.exit(1)
+
+# --- 3. אתחול המוח (Gemini 1.5 Flash 8B) ---
+print("Initializing Gemini Brain...", end='', flush=True)
+try:
+    client = genai.Client(api_key=GEMINI_KEY)
+    chat = client.chats.create(model='gemini-1.5-flash-8b')
+    
+    initial_prompt = """
+    You are Jarvis, a highly intelligent AI assistant powering a smart room.
+    1. Reply in the exact same language the user speaks to you (Hebrew or English).
+    2. Keep answers short, witty, and extremely practical. No fluff.
+    3. Do NOT output your internal thoughts or reasoning.
+    4. If the user implies exit/stop/goodbye: start your response with "[EXIT]".
+    """
+    chat.send_message(initial_prompt)
+    print(" Ready. ✅")
+except Exception as e:
+    print(f"\n❌ Brain offline. Connection or Quota error: {e}")
+    sys.exit(1)
+
+# --- פונקציות עזר ודיבור ---
+def contains_hebrew(text):
+    return bool(re.search(r'[\u0590-\u05FF]', text))
+
+def speak(text):
+    clean_text = text.replace("[EXIT]", "").replace("*", "").strip()
+    if not clean_text: return
+    
+    print(f"\n[Jarvis]: {clean_text}")
+
+    try:
+        voice = "en-GB-RyanNeural"
+        if contains_hebrew(clean_text):
+            voice = "he-IL-AvriNeural"
+
+        # התיקון: נתיב מוחלט ל-edge-tts בתוך הסביבה הווירטואלית שלך
+        edge_tts_cmd = '/home/kido1/Smartroom/.venv/bin/edge-tts'
+
+        subprocess.run([
+            edge_tts_cmd, '--text', clean_text, '--write-media', 'response.mp3',
+            '--voice', voice, '--rate=+15%'
+        ], check=True)
+
+        subprocess.run(['mpv', 'response.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"Speak Error: {e}")
+
+# --- פונקציות האזנה וחשיבה ---
+def listen():
+    r = sr.Recognizer()
+    r.dynamic_energy_threshold = True
+    r.energy_threshold = 150
+    r.pause_threshold = 1.0
+
+    try:
+        source = sr.Microphone(device_index=0)
+    except:
+        source = sr.Microphone()
+
+    with source:
+        sys.stdout.write(" Listening...")
+        sys.stdout.flush()
+        try:
+            r.adjust_for_ambient_noise(source, duration=0.5)
+            audio = r.listen(source, timeout=5, phrase_time_limit=10)
+            sys.stdout.write("\r Processing...")
+            sys.stdout.flush()
+            return r.recognize_google(audio, language="he-IL") 
+        except:
+            return None
+
+def ask_brain(text):
+    try:
+        response = chat.send_message(text)
+        return response.text.strip()
+    except Exception as e:
+        error_msg = str(e)
+        print(f"\n[Error API]: {error_msg}")
+        # זיהוי חכם של עומס על ה-API
+        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg:
+            return "הגעתי למגבלת הפניות של גוגל. תן לי כארבעים שניות לנוח ונסה שוב."
+        return "יש לי תקלה בחיבור לרשת."
+
+#לולאת שיחה רציפה ---
+def run_conversation_session():
+    silence_counter = 0
+    while True:
+        user_input = listen()
+        
+        # אם יש שקט
+        if not user_input:
+            silence_counter += 1
+            if silence_counter == 1:
+                speak("תרצה עוד משהו?")
+                continue
+            else:
+                speak("חוזר למצב המתנה.")
+                break
+        
+        # אם המשתמש דיבר
+        silence_counter = 0
+        print(f"\n[You]: {user_input}")
+        
+        # בדיקת מילות סיום
+        exit_words = ["לא", "מספיק", "תודה", "זהו", "ביי", "stop", "exit"]
+        if any(word in user_input.lower() for word in exit_words) or user_input.strip() == "לא":
+            speak("בסדר גמור, אני כאן אם תצטרך.")
+            break
+            
+        if "כיבוי" in user_input and "מערכת" in user_input:
+            speak("מכבה מערכות. להתראות.")
+            os.system("sudo shutdown -h now")
+            sys.exit(0)
+
+        # העברת הפקודה למוח
+        response = ask_brain(user_input)
+        if "[EXIT]" in response:
+            speak(response)
+            break
+        else:
+            speak(response)
+
+# --- ליבת המערכת (השכמה) ---
+def run_jarvis():
+    try:
+        porcupine = pvporcupine.create(access_key=PORCUPINE_KEY, keywords=['jarvis'])
+    except Exception as e:
+        print(f"Porcupine Error: {e}")
+        return
+
+    pa = pyaudio.PyAudio()
+    audio_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+
+    os.system('clear')
+    speak("System integrated and online. Awaiting your command.")
+    print("\n[INFO] Listening for wake word 'Jarvis'...")
+
+    try:
+        while True:
+            pcm = audio_stream.read(porcupine.frame_length, exception_on_overflow=False)
+            pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
+
+            if porcupine.process(pcm) >= 0:
+                print("\n[WAKE WORD DETECTED]")
+                subprocess.run(['mpv', 'alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                
+                # סוגרים מיקרופון כדי שגוגל STT יוכל להשתמש בו
+                audio_stream.stop_stream()
+                audio_stream.close()
+
+                # כניסה ללולאת השיחה הרציפה
+                run_conversation_session()
+
+                # פתיחה מחדש של המיקרופון להשכמה
+                audio_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+                print("\n[INFO] Standing by...")
+
+    except KeyboardInterrupt:
+        print("\n[INFO] Shutting down Jarvis.")
+    finally:
+        if porcupine: porcupine.delete()
+        if audio_stream: audio_stream.close()
+        if pa: pa.terminate()
+
+if __name__ == "__main__":
+    run_jarvis()

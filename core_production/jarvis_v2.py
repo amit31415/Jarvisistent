@@ -262,8 +262,9 @@ def run_jarvis():
             pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
 
             if porcupine.process(pcm) >= 0:
-                print("\n[WAKE WORD DETECTED]")
-                subprocess.run(['mpv', 'alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                print("\n[WAKE SAME WORD DETECTED]")
+                # שינינו כאן ל-wake.mp3
+                subprocess.run(['mpv', 'wake.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 
                 audio_stream.stop_stream()
                 audio_stream.close()

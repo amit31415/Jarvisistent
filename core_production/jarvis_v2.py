@@ -41,7 +41,9 @@ if not GEMINI_KEY or not PORCUPINE_KEY:
 # =====================================================================
 
 def check_general_emails() -> str:
-    """מושך את המיילים האחרונים שלא נקראו מ-3 הימים האחרונים. השתמש בזה כשהבוס מבקש עדכון כללי על המייל שלו או שואל אם יש הודעות חדשות."""
+    """מושך את המיילים האחרונים שלא נקראו מ-3 הימים האחרונים. השתמש בזה כשהבוס מבקש עדכון כללי על המייל שלו או שואל אם יש הודעות חדשות.
+    "CRITICAL: When the user asks you to perform an action (like checking emails, reading files, etc), YOU MUST CALL THE TOOL IMMEDIATELY. DO NOT reply with text saying 'I will check' or 'Checking now'. Just execute the tool right away!"
+    """
     print("[INFO] AI executing: check_general_emails()")
     return google_api.get_unread_emails(max_results=40)
 
@@ -210,7 +212,7 @@ def run_conversation_session(porcupine, pa):
                     if was_interrupted: silence_count = 0 
                     continue
                 else:
-                    speak("חוזר למצב המתנה.", porcupine, pa)
+                    speak("Back to standbye", porcupine, pa)
                     break
             
             silence_count = 0
@@ -231,7 +233,7 @@ def run_conversation_session(porcupine, pa):
             response = chat.send_message(user_input)
             
             if "[EXIT]" in response.text:
-                speak("להתראות אדוני.", porcupine, pa)
+                speak("Goodbye sir. ", porcupine, pa)
                 break
             else:
                 speak(response.text, porcupine, pa)
@@ -264,7 +266,7 @@ def run_jarvis():
             if porcupine.process(pcm) >= 0:
                 print("\n[WAKE SAME WORD DETECTED]")
                 # שינינו כאן ל-wake.mp3
-                subprocess.run(['mpv', 'wake.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.run(['mpv', '/home/kido1/Smartroom/wake.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 
                 audio_stream.stop_stream()
                 audio_stream.close()

@@ -30,6 +30,8 @@ def authenticate_google():
             return None
     return creds
 
+
+
 # --- שירותי גוגל ---
 def get_gmail_service():
     creds = authenticate_google()
@@ -105,7 +107,47 @@ def get_unread_emails(max_results=40):
 
     except Exception as e:
         return f"[ERROR] Failed to fetch emails: {e}"
+
+
+def get_specific_email(search_term):
+    """מחפש מיילים ספציפיים בג'ימייל ומחזיר את התוכן והתקציר שלהם"""
+    try:
+        from google.oauth2.credentials import Credentials
+        from googleapiclient.discovery import build
+        import os
+
+        # טעינת ההרשאות מקובץ הטוקן
+        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
+        if not os.path.exists(token_path):
+            return "שגיאה: קובץ token.json חסר."
         
+        creds = Credentials.from_authorized_user_file(token_path, ['https://www.googleapis.com/auth/gmail.readonly'])        
+        service = build('gmail', 'v1', credentials=creds)
+
+        # מחפש בג'ימייל (מביא את 3 התוצאות הכי רלוונטיות)
+        results = service.users().messages().list(userId='me', q=search_term, maxResults=3).execute()
+        messages = results.get('messages', [])
+
+        if not messages:
+            return f"לא מצאתי מיילים שקשורים ל: {search_term}"
+
+        output = ""
+        for msg in messages:
+            msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+            payload = msg_data.get('payload', {})
+            headers = payload.get('headers', [])
+            
+            subject = next((header['value'] for header in headers if header['name'].lower() == 'subject'), "ללא נושא")
+            sender = next((header['value'] for header in headers if header['name'].lower() == 'from'), "לא ידוע")
+            snippet = msg_data.get('snippet', '')
+
+            output += f"מאת: {sender}\nנושא: {subject}\nתקציר: {snippet}\n\n"
+
+        return output
+
+    except Exception as e:
+        return f"שגיאה טכנית מול גוגל במהלך החיפוש: {str(e)}"
+
 # טסט מקומי לבדיקת המערכת
 if __name__ == '__main__':
     print("[INFO] Testing Jarvis Gmail Connection...")

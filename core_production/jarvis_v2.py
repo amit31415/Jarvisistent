@@ -77,7 +77,14 @@ def check_general_emails() -> str:
 def search_specific_email(search_term: str) -> str:
     """מחפש וקורא מייל ספציפי לפי שם שולח או נושא. השתמש בזה כשהבוס שואל על מייל מאדם ספציפי (למשל 'מייל מראובן') או בנושא ספציפי."""
     print(f"[INFO] AI executing: search_specific_email(search_term='{search_term}')")
-    return google_api.get_specific_email(search_term)
+    try:
+        # אנחנו מנסים לקרוא לפונקציה מ-google_api
+        return google_api.get_specific_email(search_term)
+    except Exception as e:
+        # אם יש שגיאה בתוך google_api, נתפוס אותה ונדפיס אותה!
+        print(f"\n[CRITICAL ERROR] The search in google_api.py failed!")
+        print(f"Error details: {str(e)}")
+        return "הייתה בעיה טכנית בעת ביצוע החיפוש בג'ימייל."
 
 def create_new_folder(folder_name: str) -> str:
     """יוצר תיקייה חדשה במערכת הקבצים. השתמש בזה כשהבוס מבקש ליצור או לפתוח תיקייה."""

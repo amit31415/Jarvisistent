@@ -75,15 +75,14 @@ def check_general_emails() -> str:
     return google_api.get_unread_emails(max_results=40)
 
 def search_specific_email(search_term: str) -> str:
-    """מחפש וקורא מייל ספציפי לפי שם שולח או נושא. השתמש בזה כשהבוס שואל על מייל מאדם ספציפי (למשל 'מייל מראובן') או בנושא ספציפי."""
+    """מחפש וקורא מייל ספציפי לפי שם שולח או נושא."""
     print(f"[INFO] AI executing: search_specific_email(search_term='{search_term}')")
     try:
-        # אנחנו מנסים לקרוא לפונקציה מ-google_api
-        return google_api.get_specific_email(search_term)
+        result = google_api.get_specific_email(search_term)
+        print(f"\n[DEBUG RAW OUTPUT]: {result}\n")
+        return result
     except Exception as e:
-        # אם יש שגיאה בתוך google_api, נתפוס אותה ונדפיס אותה!
-        print(f"\n[CRITICAL ERROR] The search in google_api.py failed!")
-        print(f"Error details: {str(e)}")
+        print(f"\n[CRITICAL ERROR]: {str(e)}")
         return "הייתה בעיה טכנית בעת ביצוע החיפוש בג'ימייל."
 
 def create_new_folder(folder_name: str) -> str:
@@ -243,11 +242,11 @@ def run_conversation_session(porcupine, pa):
             if not user_input:
                 silence_count += 1
                 if silence_count == 1:
-                    was_interrupted = speak("תרצה עוד משהו?", porcupine, pa)
+                    was_interrupted = speak("is there sonthing else sir?", porcupine, pa)
                     if was_interrupted: silence_count = 0 
                     continue
                 else:
-                    speak("Back to standbye", porcupine, pa)
+                    speak("very well. Back to standbye", porcupine, pa)
                     break
             
             silence_count = 0

@@ -139,11 +139,24 @@ print("Initializing Gemini V2 Brain...", end='', flush=True)
 try:
     client = genai.Client(api_key=GEMINI_KEY)
     
-    # הוראת העל - פשוטה, ברורה, ונותנת לו אוטונומיה מלאה
-    sys_prompt = """You are Jarvis, a highly advanced, intelligent AI voice assistant for your boss (Amit).
+    # -- שאיבת הזיכרון לתוך התת-מודע --
+    memory_context = ""
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, 'r', encoding='utf-8') as f:
+            try:
+                memories = json.load(f)
+                if memories:
+                    memory_context = "\nCRITICAL CONTEXT - HERE ARE IMPORTANT FACTS YOU MUST REMEMBER ABOUT THE USER AND THE ROOM:\n"
+                    for i, fact in enumerate(memories):
+                        memory_context += f"{i+1}. {fact}\n"
+            except:
+                pass
+
+    # הוראת העל - עכשיו כוללת גם את הזיכרונות!
+    sys_prompt = f"""You are Jarvis, a highly advanced, intelligent AI voice assistant for your boss (Amit).
 Your main superpower is the ability to USE TOOLS. You have tools to check emails, manage notes/files, check the time, search the web, and even shutdown the system.
 Whenever the user asks you to do something, THINK if you have a tool for it. If you do, USE IT. Do not guess.
-
+{memory_context}
 Rules for Voice Output:
 1. Keep answers extremely short, conversational, and natural in Hebrew.
 2. If you use a tool to fetch info (like emails), summarize the results nicely and briefly.

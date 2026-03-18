@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import os
+import json
 import subprocess
 import re
 import sys
@@ -39,6 +40,32 @@ if not GEMINI_KEY or not PORCUPINE_KEY:
 # --- 3. THE TOOLBOX (הכלים של ג'ארוויס - כאן הקסם קורה) ---
 # ההסברים (Docstrings) הם קריטיים! ג'מיני קורא אותם כדי להבין מתי להפעיל כל כלי.
 # =====================================================================
+
+MEMORY_FILE = '/home/kido1/Smartroom/core_production/jarvis_memory.json'
+
+def remember_fact(fact: str) -> str:
+    """
+    Use this tool to save important long-term facts about the user, preferences, or the room.
+    Call this tool ONLY when the user explicitly asks you to remember something, or if you learn a critical persistent fact.
+    """
+    memories = []
+    # קריאת הזיכרונות הקיימים
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, 'r', encoding='utf-8') as f:
+            try:
+                memories = json.load(f)
+            except:
+                pass
+    
+    # הוספת הזיכרון החדש
+    if fact not in memories:
+        memories.append(fact)
+        # שמירה חזרה לקובץ
+        with open(MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memories, f, ensure_ascii=False, indent=4)
+        return f"Memory successfully saved: {fact}"
+    else:
+        return "I already know this fact."
 
 def check_general_emails() -> str:
     """מושך את המיילים האחרונים שלא נקראו מ-3 הימים האחרונים. השתמש בזה כשהבוס מבקש עדכון כללי על המייל שלו או שואל אם יש הודעות חדשות.
@@ -96,6 +123,7 @@ jarvis_tools = [
     search_in_file,
     get_current_time,
     shutdown_system,
+    remember_fact
     
 ]
 

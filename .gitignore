@@ -1,3 +1,7 @@
 core_production/credentials.json
 core_production/token.json
 .env
+token.json
+token.json
+credentials.json
+.env

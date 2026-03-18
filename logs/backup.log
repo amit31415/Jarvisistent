@@ -1,0 +1,533 @@
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] No changes to backup. Directory is clean.
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[main 2f5e23c] Auto-backup: 2026-03-15 23:00:01
+ 2 files changed, 53 insertions(+)
+ create mode 100644 credentials.json
+ create mode 100644 google_api.py
+[INFO] Pushing to remote repository...
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— Google OAuth Client ID ————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqRdIkgiEPzo19JagPGUtiUO        
+remote:             
+remote:             
+remote:       —— Google OAuth Client Secret ————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqUMLR1pACxidNhUU95MLnFZ        
+remote:             
+remote: 
+remote: 
+To github.com:amit31415/Jarvisistent.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-15 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[main b3a4dc8] Auto-backup: 2026-03-16 00:00:01
+ 2 files changed, 58 insertions(+), 24 deletions(-)
+ create mode 100644 token.json
+[INFO] Pushing to remote repository...
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— Google OAuth Access Token —————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038r6elT6tcif600XKu7YKo72        
+remote:             
+remote:             
+remote:       —— Google OAuth Client ID ————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqRdIkgiEPzo19JagPGUtiUO        
+remote:             
+remote:             
+remote:       —— Google OAuth Refresh Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038pskq8BpMCPjEKP12HZ8Ulq        
+remote:             
+remote:             
+remote:       —— Google OAuth Client Secret ————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqUMLR1pACxidNhUU95MLnFZ        
+remote:             
+remote: 
+remote: 
+To github.com:amit31415/Jarvisistent.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-16 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[main f130f8f] Auto-backup: 2026-03-17 00:00:01
+ 3 files changed, 80 insertions(+), 14 deletions(-)
+[INFO] Pushing to remote repository...
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— Google OAuth Access Token —————————————————————————        
+remote:        locations:        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGUGGyK7UK2pZ9bceV66Qzhy        
+remote:             
+remote:             
+remote:       —— Google OAuth Access Token —————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038r6elT6tcif600XKu7YKo72        
+remote:             
+remote:             
+remote:       —— Google OAuth Client ID ————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGRTLGcxZZqe8M4bTiHjIodx        
+remote:             
+remote:             
+remote:       —— Google OAuth Refresh Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038pskq8BpMCPjEKP12HZ8Ulq        
+remote:             
+remote:             
+remote:       —— Google OAuth Refresh Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGSAeFf47FcX1oS5m2RuMmNu        
+remote:             
+remote:             
+remote:     ——[ WARNING ]—————————————————————————————————————————        
+remote:      1 more secrets detected. Remove each secret from your commit history to view more detections.        
+remote:      https://docs.github.com/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning        
+remote:     ——————————————————————————————————————————————————————        
+remote: 
+remote: 
+To github.com:amit31415/Jarvisistent.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[main 8e2cb4c] Auto-backup: 2026-03-17 01:00:01
+ 2 files changed, 365 insertions(+), 20 deletions(-)
+ create mode 100644 jarvis_v2.py
+[INFO] Pushing to remote repository...
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— Google OAuth Access Token —————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2zYt1yGZWYenyx3v8lS8Hwynp        
+remote:             
+remote:             
+remote:       —— Google OAuth Access Token —————————————————————————        
+remote:        locations:        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGUGGyK7UK2pZ9bceV66Qzhy        
+remote:             
+remote:             
+remote:       —— Google OAuth Client ID ————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
+remote:            path: credentials.json:1        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGRTLGcxZZqe8M4bTiHjIodx        
+remote:             
+remote:             
+remote:       —— Google OAuth Refresh Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2zYq72U59bRq1SY6cYoPAWw14        
+remote:             
+remote:             
+remote:       —— Google OAuth Refresh Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
+remote:            path: token.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGSAeFf47FcX1oS5m2RuMmNu        
+remote:             
+remote:             
+remote:     ——[ WARNING ]—————————————————————————————————————————        
+remote:      1 more secrets detected. Remove each secret from your commit history to view more detections.        
+remote:      https://docs.github.com/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning        
+remote:     ——————————————————————————————————————————————————————        
+remote: 
+remote: 
+To github.com:amit31415/Jarvisistent.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 01:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../.gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 11:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../.gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 12:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] No changes to backup. Directory is clean.
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] No changes to backup. Directory is clean.
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 89d7b38] Auto-backup: 2026-03-17 15:00:01
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 746555b] Auto-backup: 2026-03-17 16:00:01
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 13d245f] Auto-backup: 2026-03-17 20:00:01
+ 1 file changed, 17 insertions(+)
+ create mode 100644 core_production/get_token.py
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 20:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev e2cc6b6] Auto-backup: 2026-03-17 21:00:01
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 21:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-17 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev a689150] Auto-backup: 2026-03-18 15:00:01
+ 2 files changed, 31 insertions(+)
+ create mode 100644 core_production/jarvis_memory.json
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+	../token.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+	../token.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 20:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 9b4a350] Auto-backup: 2026-03-18 21:00:02
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 21:00:02
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev e3eb6eb] Auto-backup: 2026-03-18 22:00:01
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../local_sandboxes/.env
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../jarvis_v2.log
+	../token.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-18 23:00:01

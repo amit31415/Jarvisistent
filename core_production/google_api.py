@@ -148,6 +148,51 @@ def get_specific_email(search_term):
     except Exception as e:
         return f"שגיאה טכנית מול גוגל במהלך החיפוש: {str(e)}"
 
+def get_upcoming_events():
+    """מושך את האירועים הקרובים מהיומן של גוגל."""
+    max_results = 5
+    try:
+        from google.oauth2.credentials import Credentials
+        from googleapiclient.discovery import build
+        import os
+        import datetime
+
+        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
+        if not os.path.exists(token_path):
+            return "שגיאה: קובץ token.json חסר."
+        
+        # טוען את הטוקן עם כל ההרשאות
+        SCOPES = [
+            'https://www.googleapis.com/auth/gmail.readonly',
+            'https://www.googleapis.com/auth/tasks',
+            'https://www.googleapis.com/auth/calendar.readonly',
+            'https://www.googleapis.com/auth/drive.readonly'
+        ]
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+        service = build('calendar', 'v3', credentials=creds)
+
+        # לוקח את הזמן הנוכחי כדי להביא רק אירועים מעכשיו והלאה
+        now = datetime.datetime.utcnow().isoformat() + 'Z'
+        events_result = service.events().list(calendarId='primary', timeMin=now,
+                                              maxResults=max_results, singleEvents=True,
+                                              orderBy='startTime').execute()
+        events = events_result.get('items', [])
+
+        if not events:
+            return "אין אירועים קרובים ביומן."
+
+        output = "אירועים קרובים ביומן:\n"
+        for event in events:
+            # מנסה לקחת שעת התחלה (או תאריך אם זה אירוע של יום שלם)
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            summary = event.get('summary', 'ללא כותרת')
+            output += f"- {summary} (מתחיל ב: {start})\n"
+
+        return output
+
+    except Exception as e:
+        return f"שגיאה טכנית מול גוגל קלנדר: {str(e)}"
+
 # טסט מקומי לבדיקת המערכת
 if __name__ == '__main__':
     print("[INFO] Testing Jarvis Gmail Connection...")

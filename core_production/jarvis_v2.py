@@ -141,6 +141,60 @@ def search_web(query: str) -> str:
     except Exception as e:
         return f"שגיאת תקשורת בחיפוש: {e}"
 
+def check_calendar(query: str) -> str:
+    """מושך את האירועים והפגישות הקרובות מהיומן (Google Calendar) של הבוס. השתמש בזה כששואלים על לו"ז, פגישות, או מה מתוכנן.
+    
+    Args:
+        query: פשוט תעביר לכאן את מילת החיפוש או בקשת המשתמש (למשל 'לוז')
+    """
+    print("\n[INFO] AI executing: check_calendar()")
+    try:
+        result = google_api.get_upcoming_events()
+        print(f"[DEBUG CALENDAR RAW]: {result}\n")
+        return result
+    except Exception as e:
+        return f"שגיאה בקריאת היומן: {str(e)}"
+
+
+def get_upcoming_events():
+    """מושך את האירועים הקרובים מהיומן של גוגל."""
+    max_results = 5
+    try:
+        from google.oauth2.credentials import Credentials
+        from googleapiclient.discovery import build
+        import os
+        import datetime
+
+        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
+        if not os.path.exists(token_path):
+            return "שגיאה: קובץ token.json חסר."
+        
+        # טוען את הטוקן עם כל ההרשאות
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+        service = build('calendar', 'v3', credentials=creds)
+
+        # לוקח את הזמן הנוכחי כדי להביא רק אירועים מעכשיו והלאה
+        now = datetime.datetime.utcnow().isoformat() + 'Z'
+        events_result = service.events().list(calendarId='primary', timeMin=now,
+                                              maxResults=max_results, singleEvents=True,
+                                              orderBy='startTime').execute()
+        events = events_result.get('items', [])
+
+        if not events:
+            return "אין אירועים קרובים ביומן."
+
+        output = "אירועים קרובים ביומן:\n"
+        for event in events:
+            # מנסה לקחת שעת התחלה (או תאריך אם זה אירוע של יום שלם)
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            summary = event.get('summary', 'ללא כותרת')
+            output += f"- {summary} (מתחיל ב: {start})\n"
+
+        return output
+
+    except Exception as e:
+        return f"שגיאה טכנית מול גוגל קלנדר: {str(e)}"
+
 # רשימת הכלים שאנחנו נותנים למוח של ג'ארוויס (כולל חיפוש בגוגל מובנה!)
 jarvis_tools = [
     check_general_emails,
@@ -152,7 +206,9 @@ jarvis_tools = [
     get_current_time,
     shutdown_system,
     remember_fact,
-    search_web
+    search_web,
+    check_calendar,
+    get_upcoming_events
     
 ]
 

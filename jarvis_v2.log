@@ -93,3 +93,129 @@ TERM environment variable not set.
 [Jarvis]: Goodbye sir.
 
 [INFO] Standing by...
+[INFO] Local memory initialized at: /home/kido1/Smartroom/jarvis_memory
+Initializing Gemini V2 Brain... Ready. ✅
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+TERM environment variable not set.
+
+[Jarvis]: Jarvis V2 Core is online. Awaiting command.
+
+[INFO] Listening for wake word 'Jarvis'...
+
+[WAKE SAME WORD DETECTED]
+ Listening... Processing...
+[You]: מה אתה יודע
+
+[Jarvis]: בודק את זה...
+
+[Jarvis]: אני יודע שאתה עמית, בן 24, ואתה לומד הנדסת מכונות. אני גם יודע שאתה גר בבאר שבע במהלך השבוע. בנוסף, אני יכול לעזור לך עם מיילים, פתקים, קבצים, חיפוש באינטרנט ועוד.
+ Listening... Processing...
+[You]: אוקיי לפי כל המידע שיש לך עליי אתה יכול להגיד לי איפה אני לומד
+
+[Jarvis]: בודק את זה...
+
+[Jarvis]: אני לא יודע בוודאות, אבל בהתבסס על העובדה שאתה גר בבאר שבע במהלך השבוע ולומד הנדסת מכונות, אני מניח שאתה לומד במוסד אקדמי בבאר שבע.
+ Listening... Processing...
+[You]: אוקיי זה כיוון טוב איפה נראה לך
+[INFO] AI executing: search_web('מוסדות לימוד הנדסת מכונות בבאר שבע')
+
+[Jarvis]: אני מניח שאתה לומד במחלקה להנדסת מכונות בקמפוס בבאר שבע, כנראה באוניברסיטת בן-גוריון.
+ Listening... Processing...
+[You]: וואלה צודק אתה יכול להכניס את זה
+
+[Jarvis]: בטח, זכרתי את זה. עכשיו אני יודע שאתה לומד הנדסת מכונות באוניברסיטת בן-גוריון בבאר שבע.
+ Listening... Processing...
+[You]: חזק מאוד
+
+[Jarvis]: תודה! אני שמח שיכולתי לעזור.
+ Listening... Processing...
+[You]: עוד משהו שאתה יכול לזכור עליי אני מאוד אוהב פיזיקה ולהבין למה דברים עובדים כמו
+
+[Jarvis]: בודק את זה...
+
+[Jarvis]: בטח, זכרתי שאתה מאוד אוהב פיזיקה ולהבין איך דברים עובדים.
+ Listening... Processing...
+[You]: תגיד אתה יכול לעשות אינטגרציה על הקונספט הזה בגלל שאני מאוד
+
+[Jarvis]: אני בהחלט אקח את זה בחשבון. אם תהיה לך שאלה או משימה שקשורה לפיזיקה או להבנה איך דברים עובדים, אני אשתדל לעזור לך עם זה. יש משהו ספציפי שאתה רוצה שאעשה עם המידע הזה עכשיו?
+ Listening... Processing...
+[Jarvis]: is there sonthing else sir?
+ Listening...
+[Jarvis]: very well. Back to standbye
+
+[INFO] Standing by...
+[INFO] Local memory initialized at: /home/kido1/Smartroom/jarvis_memory
+Initializing Gemini V2 Brain... Ready. ✅
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+TERM environment variable not set.
+
+[Jarvis]: Jarvis V2 Core is online. Awaiting command.
+[INFO] Local memory initialized at: /home/kido1/Smartroom/jarvis_memory
+Initializing Gemini V2 Brain... Ready. ✅
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+TERM environment variable not set.
+
+[Jarvis]: Jarvis V2 Core is online. Awaiting command.
+
+[INFO] Listening for wake word 'Jarvis'...
+
+[WAKE SAME WORD DETECTED]
+ Listening... Processing...
+[You]: שבסופה שם אני חוזר הביתה לגן יבנה
+
+[Jarvis]: הבנתי, עמית חוזר הביתה לגן יבנה בסופי שבוע.
+ Listening... Processing...
+[You]: עוקבים עכשיו יום שישי
+
+[Jarvis]: הבנתי, היום יום שישי.
+ Listening... Processing...
+[You]: אם היום
+
+[Jarvis]: סליחה, לא הבנתי את השאלה. תוכל לפרט?
+ Listening... Processing...
+[You]: יום שישי בערב איפה סביר להניח שאני אהיה בארץ
+
+[Jarvis]: רק רגע...
+
+[Jarvis]: אם היום יום שישי בערב, אני מניח שאתה כבר בגן יבנה.
+ Listening... Processing...
+[You]: אוקיי ואם אני ואם עכשיו יום שלישי בערב
+
+[Jarvis]: אם עכשיו יום שלישי בערב, אני מניח שאתה בבאר שבע, לומד הנדסת מכונות באוניברסיטת בן-גוריון.
+ Listening... Processing...
+[You]: כן אבל אם עכשיו נניח שלישי בלא יודע 11 בלילה
+
+[Jarvis]: אם עכשיו שלישי ב-11 בלילה, אני מניח שאתה עדיין בבאר שבע.
+ Listening... Processing...
+[You]: טוב בסדר אתה יכול לנו
+
+[Jarvis]: סליחה, לא הבנתי מה רצית שאעשה. תוכל להשלים את המשפט?
+ Listening...
+[Jarvis]: is there sonthing else sir?
+ Listening... Processing...
+[You]: לך לישון
+[INFO] AI executing: shutdown_system()
+[INFO] Local memory initialized at: /home/kido1/Smartroom/jarvis_memory
+Initializing Gemini V2 Brain... Ready. ✅
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+TERM environment variable not set.
+
+[Jarvis]: Jarvis V2 Core is online. Awaiting command.
+
+[INFO] Listening for wake word 'Jarvis'...

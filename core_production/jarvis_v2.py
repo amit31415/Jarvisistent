@@ -6,9 +6,12 @@ import re
 import sys
 import time
 import struct
+import random
 import pvporcupine
 import pyaudio
 import datetime
+import urllib.request
+import urllib.parse
 import google_api 
 import local_memory
 from dotenv import load_dotenv
@@ -119,6 +122,25 @@ def shutdown_system() -> str:
     os.system("sudo shutdown -h now")
     return "מכבה את המערכת."
 
+def search_web(query: str) -> str:
+    """מחפש מידע בזמן אמת באינטרנט. השתמש בזה כשהבוס מבקש לדעת משהו על העולם, חדשות, או להסביר מושג."""
+    print(f"[INFO] AI executing: search_web('{query}')")
+    try:
+        url = f"https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}"
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+        html = urllib.request.urlopen(req).read().decode('utf-8')
+        
+        # חילוץ התוצאות מהקוד של האתר
+        snippets = re.findall(r'<a class="result__snippet[^>]*>(.*?)</a>', html, re.IGNORECASE | re.DOTALL)
+        if not snippets:
+            return "לא מצאתי תוצאות ברשת."
+        
+        # ניקוי תגיות והחזרת 3 התוצאות הראשונות
+        clean_snippets = [re.sub(r'<[^>]+>', '', s).strip() for s in snippets[:3]]
+        return "תוצאות חיפוש מהאינטרנט:\n" + "\n".join(clean_snippets)
+    except Exception as e:
+        return f"שגיאת תקשורת בחיפוש: {e}"
+
 # רשימת הכלים שאנחנו נותנים למוח של ג'ארוויס (כולל חיפוש בגוגל מובנה!)
 jarvis_tools = [
     check_general_emails,
@@ -129,7 +151,8 @@ jarvis_tools = [
     search_in_file,
     get_current_time,
     shutdown_system,
-    remember_fact
+    remember_fact,
+    search_web
     
 ]
 
@@ -156,7 +179,14 @@ try:
     sys_prompt = f"""You are Jarvis, a highly advanced, intelligent AI voice assistant for your boss (Amit).
 Your main superpower is the ability to USE TOOLS. You have tools to check emails, manage notes/files, check the time, search the web, and even shutdown the system.
 Whenever the user asks you to do something, THINK if you have a tool for it. If you do, USE IT. Do not guess.
+
 {memory_context}
+
+CRITICAL DETECTIVE MODE & HONESTY RULE: You are a brilliant analytical thinker. You can cross-reference facts from your memory to make logical deductions.
+HOWEVER, YOU MUST NEVER INVENT FACTS. If you do not know something for sure, or if you are making an educated guess/deduction based on facts, you MUST explicitly state that it is a guess. 
+Use phrases like "אני מניח ש...", "אם אני צריך לנחש...", or "אני לא יודע בוודאות, אבל אני מסיק ש...". 
+Never present a deduction or a guess as an absolute fact.
+
 Rules for Voice Output:
 1. Keep answers extremely short, conversational, and natural in Hebrew.
 2. If you use a tool to fetch info (like emails), summarize the results nicely and briefly.
@@ -273,8 +303,19 @@ def run_conversation_session(porcupine, pa):
                 break
             
             # אינדיקציה קולית - בודקים אם יש צורך לפנות לכלים
-            if any(word in user_text for word in ["מייל", "הודעות", "חפש", "מה", "מי", "מזג אוויר"]):
-                speak("בודק את זה...", porcupine, pa)
+            # אינדיקציה קולית דינמית וחכמה
+            if any(word in user_text for word in ["מייל", "מיילים", "הודעות"]):
+                feedback = random.choice(["פותח תיבת דואר...", "מציץ במיילים...", "שנייה, שולף הודעות..."])
+                speak(feedback, porcupine, pa)
+            elif any(word in user_text for word in ["חפש", "אינטרנט", "מזג אוויר", "חדשות"]):
+                feedback = random.choice(["מחפש ברשת...", "מריץ חיפוש...", "בודק אונליין..."])
+                speak(feedback, porcupine, pa)
+            elif any(word in user_text for word in ["קובץ", "תיקייה", "פתק", "תזכור", "שמור"]):
+                feedback = random.choice(["ניגש לקבצים...", "מעדכן את הזיכרון...", "רושם..."])
+                speak(feedback, porcupine, pa)
+            elif any(word in user_text for word in ["למה", "איך", "מי", "מה", "מתי", "איפה"]):
+                feedback = random.choice(["מעבד...", "רק רגע...", "תן לי לחשוב על זה..."])
+                speak(feedback, porcupine, pa)
 
             # הקסם: מעבירים את המשפט כמות שהוא למוח. ג'מיני כבר יחליט איזה כלי להפעיל!
             response = chat.send_message(user_input)

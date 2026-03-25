@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 from ctypes import *
 from google import genai
 from google.genai import types
+from study_mode import StudyManager
 
 # --- 1. ALSA Error Handler (השתקת שגיאות אודיו מציקות) ---
 ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
@@ -212,6 +213,8 @@ jarvis_tools = [
     
 ]
 
+study_manager = StudyManager()
+
 
 # --- 4. Init Gemini Brain ---
 print("Initializing Gemini V2 Brain...", end='', flush=True)
@@ -357,6 +360,17 @@ def run_conversation_session(porcupine, pa):
             if any(word in user_text for word in exit_words) or user_text.strip() == "לא":
                 speak("בסדר גמור, אני כאן אם תצטרך.", porcupine, pa)
                 break
+            
+            # ==========================================
+            # השתלת מוח: מצב למידה (פומודורו)
+            # ==========================================
+            study_response = study_manager.process_command(user_input)
+            if study_response:
+                # אם הפקודה קשורה ללמידה, ג'ארוויס יענה ויחזור להקשיב
+                # אנחנו מדלגים לגמרי על ג'מיני כאן!
+                speak(study_response, porcupine, pa)
+                continue 
+            # ==========================================
             
             # אינדיקציה קולית - בודקים אם יש צורך לפנות לכלים
             # אינדיקציה קולית דינמית וחכמה

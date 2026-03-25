@@ -196,21 +196,19 @@ def get_upcoming_events():
     except Exception as e:
         return f"שגיאה טכנית מול גוגל קלנדר: {str(e)}"
 
-def manage_study_mode(action: str, minutes: int = 5) -> str:
+def manage_study_mode(action: str) -> str:
     """
     מנהל את מצב הלמידה (Pomodoro Timer) של הבוס.
-    השתמש בכלי זה כאשר הבוס מבקש להתחיל, לעצור לחלוטין, לאפס מחדש, לצאת להפסקה, לחזור מהפסקה, לבקש עוד זמן, או שואל כמה זמן נשאר לו.
+    השתמש בכלי זה כאשר הבוס מבקש:
+    1. להתחיל ללמוד ('start')
+    2. לעצור ולבטל לחלוטין ('stop')
+    3. להשהות/לעשות פאוזה לטיימר ('pause') - חשוב: להשהות זה לא לבטל!
+    4. להמשיך טיימר שהושהה ('resume')
+    5. לצאת להפסקה ('break')
+    6. לשאול כמה זמן נשאר ('status')
     
     Args:
-        action: חובה לבחור אחד מאלה: 
-                'start' (להתחיל למידה של 50 דק), 
-                'stop' (לעצור ולבטל את מצב הלמידה לחלוטין),
-                'reset' (לאפס את הטיימר ולהתחיל 50 דק מחדש),
-                'break' (לצאת להפסקה של 10 דק), 
-                'resume' (לחזור מהפסקה ללמידה), 
-                'add_time' (תוספת זמן לפני ההפסקה),
-                'status' (לבדוק כמה זמן נשאר בטיימר).
-        minutes: מספר הדקות להוסיף (רלוונטי רק ל-add_time).
+        action: חובה לבחור: 'start', 'stop', 'pause', 'resume', 'break', 'status'.
     """
     print(f"[INFO] AI executing: manage_study_mode(action='{action}')")
     
@@ -218,14 +216,12 @@ def manage_study_mode(action: str, minutes: int = 5) -> str:
         return study_manager.start_study()
     elif action == 'stop':
         return study_manager.stop_study()
-    elif action == 'reset':
-        return study_manager.reset_study()
+    elif action == 'pause':
+        return study_manager.pause_study()
+    elif action == 'resume':
+        return study_manager.resume_study()
     elif action == 'break':
         return study_manager.start_break()
-    elif action == 'resume':
-        return study_manager.start_study()
-    elif action == 'add_time':
-        return study_manager.add_time(minutes)
     elif action == 'status':
         return study_manager.get_time_left()
         

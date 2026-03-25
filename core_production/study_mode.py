@@ -2,23 +2,31 @@ import time
 import threading
 import requests
 import os
+from dotenv import load_dotenv
+
+# מכריח את הקובץ הזה לקרוא את משתני הסביבה בעצמו
+load_dotenv()
 
 class StudyManager:
     def __init__(self):
-        self.state = "IDLE"  # IDLE, STUDYING, WAITING_FOR_BREAK, ON_BREAK, NAGGING
+        self.state = "IDLE"
         self.end_time = 0
         self.last_update_id = 0 
 
-        # משיכת הטוקנים
+        # הנה התיקון - עכשיו זה מושך בדיוק את השמות שיש לך ב-.env
         self.bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
-        self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        self.chat_id = os.getenv("TELEGRAM_BOT_ID")
+
+        print(f"\n[DEBUG TELEGRAM] Token loaded: {'YES' if self.bot_token else 'NO (Check .env)'}")
+        print(f"[DEBUG TELEGRAM] Chat ID loaded: {'YES' if self.chat_id else 'NO (Check .env)'}")
 
         if self.bot_token and self.chat_id:
-            self._flush_old_messages() # מנקה הודעות ישנות כדי למנוע בלגן בעלייה
+            self._flush_old_messages() 
             threading.Thread(target=self._telegram_listener_loop, daemon=True).start()
+        else:
+            print("[CRITICAL] Telegram disabled! Could not find keys in .env")
 
     def _flush_old_messages(self):
-        """מתעלם מכל ההודעות שנשלחו כשהמערכת הייתה כבויה"""
         try:
             url = f"https://api.telegram.org/bot{self.bot_token}/getUpdates"
             response = requests.get(url, timeout=5).json()
@@ -118,13 +126,18 @@ class StudyManager:
                 self.send_phone_notification("😡 נו, חזרת למקום? תגיד 'חזרתי'.")
 
     def send_phone_notification(self, message):
-        if not self.bot_token or not self.chat_id: return
+        if not self.bot_token or not self.chat_id: 
+            print(f"[DEBUG] Failed to send message (Missing API Keys): {message}")
+            return
+            
         url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
         payload = {"chat_id": self.chat_id, "text": message}
         try:
-            requests.post(url, json=payload)
-        except Exception:
-            pass
+            response = requests.post(url, json=payload)
+            if response.status_code != 200:
+                print(f"[DEBUG] Telegram API Error: {response.text}")
+        except Exception as e:
+            print(f"[DEBUG] Request Exception: {e}")
 
     def _telegram_listener_loop(self):
         while True:

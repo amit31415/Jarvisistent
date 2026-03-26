@@ -320,13 +320,14 @@ def speak(text, porcupine=None, pa=None):
         subprocess.run([
             edge_tts_cmd, '--text', clean_text, '--write-media', 'response.mp3',
             '--voice', voice, '--rate=+15%'
-        ], check=True)
+        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         player = subprocess.Popen(['mpv', 'response.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         if porcupine and pa:
-            temp_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+            temp_stream = None # מגדירים מראש כדי למנוע קריסה
             try:
+                temp_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
                 while player.poll() is None:
                     pcm = temp_stream.read(porcupine.frame_length, exception_on_overflow=False)
                     pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
@@ -335,9 +336,16 @@ def speak(text, porcupine=None, pa=None):
                         print("\n[INTERRUPTED BY USER]")
                         subprocess.run(['mpv', 'alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                         return True 
+            except Exception as e:
+                pass # מתעלם משגיאות מיקרופון זמניות בזמן דיבור
             finally:
-                temp_stream.stop_stream()
-                temp_stream.close()
+                # התיקון הקריטי: סוגר רק אם הזרם באמת נפתח!
+                if temp_stream is not None:
+                    try:
+                        temp_stream.stop_stream()
+                        temp_stream.close()
+                    except:
+                        pass
         else:
             player.wait()
         return False
@@ -345,6 +353,7 @@ def speak(text, porcupine=None, pa=None):
         print(f"Speak Error: {e}")
         return False
 
+        
 def listen():
     r = sr.Recognizer()
     r.dynamic_energy_threshold = True

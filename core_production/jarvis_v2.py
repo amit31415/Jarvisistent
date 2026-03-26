@@ -231,7 +231,7 @@ def manage_study_mode(action: str, minutes: int = 0) -> str:
         return study_manager.add_time(minutes)
         
     return "פעולה לא חוקית."
-    
+
 # רשימת הכלים שאנחנו נותנים למוח של ג'ארוויס (כולל חיפוש בגוגל מובנה!)
 jarvis_tools = [
     check_general_emails,
@@ -378,8 +378,26 @@ def run_conversation_session(porcupine, pa):
             user_input = listen()
             
             # ניהול שתיקות
+            #if not user_input:
+            #    silence_count += 1
+            #    if silence_count == 1:
+            #        was_interrupted = speak("is there sonthing else sir?", porcupine, pa)
+            #        if was_interrupted: silence_count = 0 
+            #        continue
+            #    else:
+            #        speak("very well. Back to standbye", porcupine, pa)
+            #        break
+            # ניהול שתיקות חכם - יודע להישאר ער כשיש נדנוד פעיל
             if not user_input:
                 silence_count += 1
+                
+                # האם מנהל הלמידה חופר לו כרגע?
+                if study_manager.is_nagging():
+                    # אם כן, אל תשאל שאלות מנומסות ואל תחזור לסטנדביי!
+                    # פשוט תאפס את השתיקה ותמשיך להאזין לו בשקט כדי שיוכל לצעוק "קמתי"
+                    silence_count = 0
+                    continue
+                
                 if silence_count == 1:
                     was_interrupted = speak("is there sonthing else sir?", porcupine, pa)
                     if was_interrupted: silence_count = 0 

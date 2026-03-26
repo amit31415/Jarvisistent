@@ -2,26 +2,73 @@ import time
 import threading
 import requests
 import os
+import subprocess
 from dotenv import load_dotenv
+from google import genai
+from google.genai import types
 
 load_dotenv() 
 
 class StudyManager:
     def __init__(self):
-        self.state = "IDLE"  # IDLE, STUDYING, WAITING_FOR_BREAK, ON_BREAK, NAGGING, PAUSED
+        self.state = "IDLE"  
         self.end_time = 0
-        self.remaining_paused_time = 0 # שומר את הזמן שנותר כשאנחנו בפאוזה
-        self.previous_state = "IDLE"   # זוכר מה עשינו לפני הפאוזה
+        self.remaining_paused_time = 0 
+        self.previous_state = "IDLE"   
         self.last_update_id = 0 
+        self.extra_break_time = 0
 
         self.bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
         self.chat_id = os.getenv("TELEGRAM_BOT_ID")
+        self.gemini_key = os.getenv("GEMINI_KEY")
+
+        # איתחול מוח הנדנודים (ג'מיני קטן שעובד רק בשביל זה)
+        if self.gemini_key:
+            self.gemini_client = genai.Client(api_key=self.gemini_key)
+        else:
+            self.gemini_client = None
+            print("[CRITICAL] Missing GEMINI_KEY in .env")
 
         if self.bot_token and self.chat_id:
             self._flush_old_messages() 
             threading.Thread(target=self._telegram_listener_loop, daemon=True).start()
         else:
             print("[CRITICAL] Telegram disabled! Could not find keys in .env")
+
+    def _generate_nag_message(self, stage, context):
+        """מבקש מג'מיני להמציא משפט נדנוד קריאייטיבי בזמן אמת"""
+        if not self.gemini_client:
+            return "קום כבר."
+            
+        prompt = f"""
+        אתה ג'ארוויס, העוזר האישי של עמית.
+        המצב: עמית סיים ללמוד עכשיו והוא צריך לקום להפסקה, או שנגמרה ההפסקה והוא צריך לחזור.
+        ההקשר עכשיו: {context}
+        רמת הנדנוד: שלב {stage} (1 זה רגוע, 5 זה עצבני ונואש, 6 זה נסיון לשחד אותו עם אקסטרה זמן הפסקה).
+        
+        המשימה שלך: תכתוב משפט קצר אחד, בעברית, שישמע ממש טבעי, שנון, וקצת ציני. 
+        אל תשתמש במרכאות, כוכביות או פורמט. פשוט המשפט.
+        """
+        try:
+            response = self.gemini_client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt
+            )
+            return response.text.strip()
+        except Exception:
+            return "היי עמית, אני מחכה שתקום."
+
+    def _speak_aloud(self, text):
+        try:
+            print(f"\n[Jarvis Active Voice]: {text}")
+            edge_tts_cmd = '/home/kido1/Smartroom/.venv/bin/edge-tts'
+            subprocess.run([
+                edge_tts_cmd, '--text', text, '--write-media', 'study_alert.mp3',
+                '--voice', 'he-IL-AvriNeural', '--rate=+15%'
+            ], check=True)
+            subprocess.Popen(['mpv', 'study_alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception as e:
+            pass
 
     def _flush_old_messages(self):
         try:
@@ -35,81 +82,104 @@ class StudyManager:
     def start_study(self):
         self.state = "STUDYING"
         self.end_time = time.time() + (50 * 60)
-        self.send_phone_notification("🚀 סשן למידה התחיל! 50 דקות על השעון.")
+        self.extra_break_time = 0
+        msg = "סשן למידה התחיל. חמישים דקות על השעון. בהצלחה!"
+        self.send_phone_notification("🚀 " + msg)
+        self._speak_aloud(msg)
         self._start_monitor_thread()
         return "מצב למידה הופעל לחמישים דקות."
 
     def pause_study(self):
-        """מקפיא את הטיימר"""
         if self.state in ["STUDYING", "ON_BREAK", "WAITING_FOR_BREAK"]:
             self.remaining_paused_time = self.end_time - time.time()
             self.previous_state = self.state
             self.state = "PAUSED"
-            self.send_phone_notification("⏸️ הזמן הוקפא. כשאתה מוכן לחזור, לחץ 'המשך'.")
+            self.send_phone_notification("⏸️ הזמן הוקפא.")
+            self._speak_aloud("הטיימר הוקפא.")
             return "הטיימר הושהה."
-        elif self.state == "PAUSED":
-            return "הטיימר כבר מושהה."
         return "אין טיימר פעיל כרגע."
 
     def resume_study(self):
-        """ממשיך את הטיימר מהנקודה שעצר"""
         if self.state == "PAUSED":
             self.state = self.previous_state
             self.end_time = time.time() + self.remaining_paused_time
-            self.send_phone_notification("▶️ חזרנו לעניינים! הטיימר ממשיך מאיפה שעצרנו.")
+            mode_name = "ללמוד" if self.state == "STUDYING" else "להפסקה"
+            self.send_phone_notification(f"▶️ חזרנו לעניינים! הטיימר ממשיך מאיפה שעצרנו.")
+            self._speak_aloud(f"ממשיכים. חזרנו {mode_name}.")
             self._start_monitor_thread()
-            return "הטיימר ממשיך מאיפה שעצרנו."
+            return "הטיימר ממשיך."
         elif self.state == "IDLE":
-            return self.start_study() # אם הכל כבוי ולחץ המשך, פשוט נתחיל חדש
+            return self.start_study() 
         return "הטיימר כבר רץ."
 
     def stop_study(self):
-        """מבטל את הטיימר לחלוטין"""
         self.state = "IDLE"
         self.end_time = 0
-        self.send_phone_notification("🛑 סשן הלמידה בוטל. אנחנו בסטנדביי.")
-        return "מצב למידה נעצר לחלוטין. הטיימר בוטל."
+        self.send_phone_notification("🛑 סשן הלמידה בוטל.")
+        self._speak_aloud("ביטלתי את הטיימרים. חזרנו לשגרה.")
+        return "מצב למידה נעצר לחלוטין."
 
     def start_break(self):
         self.state = "ON_BREAK"
-        self.end_time = time.time() + (10 * 60)
-        self.send_phone_notification("☕ הפסקה של 10 דקות התחילה. קום להתרענן!")
+        total_break = 10 + self.extra_break_time
+        self.end_time = time.time() + (total_break * 60)
+        
+        msg = f"הפסקה של {total_break} דקות התחילה. קום להתרענן!"
+        if self.extra_break_time > 0:
+            msg = f"קיבלת שתי דקות בונוס! " + msg
+            
+        self.extra_break_time = 0 
+        self.send_phone_notification("☕ " + msg)
+        self._speak_aloud(msg)
         self._start_monitor_thread()
-        return "הפסקה של עשר דקות החלה."
+        return f"הפסקה של {total_break} דקות החלה."
+
+    def add_time(self, minutes):
+        if self.state == "NAGGING_TO_BREAK":
+            self.state = "WAITING_FOR_BREAK"
+            self.end_time = time.time() + (minutes * 60)
+            self._start_monitor_thread()
+        elif self.state == "NAGGING_TO_STUDY":
+            self.state = "ON_BREAK"
+            self.end_time = time.time() + (minutes * 60)
+            self._start_monitor_thread()
+        elif self.state in ["STUDYING", "ON_BREAK", "WAITING_FOR_BREAK"]:
+            self.end_time += (minutes * 60)
+        elif self.state == "PAUSED":
+            self.remaining_paused_time += (minutes * 60)
+        else:
+            return "אין טיימר פעיל לשנות לו את הזמן."
+
+        word = "הוספתי" if minutes > 0 else "הורדתי"
+        self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות לטיימר.")
+        return f"{word} {abs(minutes)} דקות."
 
     def get_time_left(self):
         if self.state == "IDLE":
             return "אין טיימר פעיל כרגע."
         elif self.state == "PAUSED":
-            mins = int(self.remaining_paused_time / 60)
+            mins = int(self.remaining_paused_time // 60)
             return f"הטיימר מושהה. נשארו {mins} דקות כשנחזור."
-        elif self.state == "NAGGING":
-            return "ההפסקה נגמרה, אתה אמור להיות בחזרה בספרים."
+        elif self.state == "NAGGING_TO_BREAK":
+            return "זמן הלמידה נגמר, אתה אמור להיות על הרגליים!"
+        elif self.state == "NAGGING_TO_STUDY":
+            return "ההפסקה נגמרה, תלמד כבר!"
         
-        remaining_minutes = int((self.end_time - time.time()) / 60)
-        if remaining_minutes <= 0:
-            return "הזמן עומד להיגמר שניות אחרונות."
+        rem_time = self.end_time - time.time()
+        
+        # הנה התיקון לבאג המינוסים - אם הזמן נגמר, עוברים מיד לנדנוד
+        if rem_time <= 0:
+            self._trigger_action()
+            return "הזמן עבר, עובר למצב נדנוד."
             
-        if self.state == "STUDYING":
-            return f"נשארו לך עוד {remaining_minutes} דקות ללמוד."
-        elif self.state == "ON_BREAK":
-            return f"נשארו לך עוד {remaining_minutes} דקות להפסקה."
-    
-    def add_time(self, minutes):
-        """מוסיף או מוריד זמן מהטיימר הקיים"""
+        mins = int(rem_time // 60)
+        secs = int(rem_time % 60)
+        time_str = f"{mins} דקות" if mins > 0 else f"{secs} שניות"
+        
         if self.state in ["STUDYING", "WAITING_FOR_BREAK"]:
-            self.end_time += (minutes * 60)
-            word = "הוספתי" if minutes > 0 else "הורדתי"
-            self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות מהטיימר.")
-            return f"{word} {abs(minutes)} דקות מהטיימר. {self.get_time_left()}"
-            
-        elif self.state == "PAUSED":
-            self.remaining_paused_time += (minutes * 60)
-            word = "הוספתי" if minutes > 0 else "הורדתי"
-            self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות (הטיימר עדיין מושהה).")
-            return f"{word} {abs(minutes)} דקות. הטיימר עדיין מושהה."
-            
-        return "אין טיימר פעיל כדי לשנות לו את הזמן."
+            return f"נשארו לך עוד {time_str} ללמוד."
+        elif self.state == "ON_BREAK":
+            return f"נשארו לך עוד {time_str} להפסקה."
 
     def _start_monitor_thread(self):
         threading.Thread(target=self._monitor_loop, daemon=True).start()
@@ -117,47 +187,92 @@ class StudyManager:
     def _monitor_loop(self):
         while self.state in ["STUDYING", "WAITING_FOR_BREAK", "ON_BREAK"]:
             time.sleep(1)
+            # הבדיקה תופסת גם אם הזמן עבר מזמן (קטן מאפס)
             if time.time() >= self.end_time:
                 self._trigger_action()
                 break
 
     def _trigger_action(self):
-        if self.state == "STUDYING":
-            self.state = "WAITING_FOR_BREAK"
-            print("\n[מערכת]: עברו 50 דקות!")
-            self.send_phone_notification("🚨 עברו 50 דקות הבוס, קום לעשות סיבוב!")
+        if self.state in ["STUDYING", "WAITING_FOR_BREAK"]:
+            self.state = "NAGGING_TO_BREAK"
+            msg = "עמית, הזמן נגמר! הגיע הזמן לקום."
+            self.send_phone_notification("🚨 " + msg)
+            self._speak_aloud(msg)
+            threading.Thread(target=self._nag_to_break_loop, daemon=True).start()
+            
         elif self.state == "ON_BREAK":
-            self.state = "NAGGING"
-            self._nag_loop()
+            self.state = "NAGGING_TO_STUDY"
+            msg = "נגמרה ההפסקה! קדימה לחזור."
+            self.send_phone_notification("🔔 " + msg)
+            self._speak_aloud(msg)
+            threading.Thread(target=self._nag_to_study_loop, daemon=True).start()
 
-    def _nag_loop(self):
-        self.send_phone_notification("🔔 נגמרה ההפסקה! תלחץ על 'המשך' כדי להתחיל ללמוד שוב.")
-        while self.state == "NAGGING":
-            time.sleep(60)
-            if self.state == "NAGGING":
-                self.send_phone_notification("😡 נו, חזרת למקום?")
+    # ==========================================
+    # לולאות הנדנוד האקספוננציאליות עם ג'מיני
+    # ==========================================
+    def _generate_nag_message(self, stage, context):
+        """מבקש מג'מיני להמציא משפט נדנוד קריאייטיבי בזמן אמת"""
+        if not self.gemini_client:
+            return "קום כבר."
+            
+        bribe_text = ""
+        if self.extra_break_time > 0:
+            bribe_text = f"המערכת אישרה לך עכשיו אקסטרה {self.extra_break_time} דקות בונוס להפסקה. ציין את זה בפרומפט שלך כשאתה משחד אותו לקום."
 
+        prompt = f"""
+        אתה ג'ארוויס, העוזר האישי של עמית.
+        המצב: {context}
+        רמת הנדנוד: שלב {stage} (1 זה תזכורת חצופה, 5 זה עצבני, סרקסטי וחסר סבלנות).
+        {bribe_text}
+        
+        המשימה שלך: תכתוב משפט קצר אחד, בעברית. אל תהיה מנומס. תהיה עוקצני, חצוף, שנון, כמו חבר שמתעצבן שאתה לא קם.
+        דבר ישירות. בלי מרכאות, בלי תוספות, פשוט המשפט שיגרום לו להזיז את התחת.
+        """
+        try:
+            response = self.gemini_client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt
+            )
+            return response.text.strip()
+        except Exception:
+            return "יאללה עמית, כמה אפשר לשבת? תזיז את עצמך."
+
+    def _nag_to_study_loop(self):
+        delays = [60, 30, 15]
+        stage = 1
+        
+        while self.state == "NAGGING_TO_STUDY":
+            current_delay = delays[stage-1] if stage <= len(delays) else 10
+            
+            for _ in range(current_delay):
+                if self.state != "NAGGING_TO_STUDY":
+                    return
+                time.sleep(1)
+            
+            msg = self._generate_nag_message(stage, "ההפסקה שלו נגמרה והוא צריך לחזור ללמוד עכשיו.")
+            self.send_phone_notification("🔔 " + msg)
+            self._speak_aloud(msg)
+            
+            stage += 1
+
+    def is_nagging(self):
+        """פונקציית עזר שתעזור לג'ארוויס לדעת אם הוא באמצע לנדנד לך"""
+        return self.state in ["NAGGING_TO_BREAK", "NAGGING_TO_STUDY"]
+        
     def send_phone_notification(self, message):
         if not self.bot_token or not self.chat_id: return
         url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
         
-        # ==========================================
-        # הקסם החדש: מקלדת שליטה קבועה בטלגרם!
-        # ==========================================
+        # מקלדת מעודכנת עם כפתור של "קמתי כבר חופר"
         keyboard = {
             "keyboard": [
-                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}],
-                [{"text": "⏸️ השהה"}, {"text": "▶️ המשך / התחל"}]
+                [{"text": "🏃‍♂️ יצאתי להפסקה"}, {"text": "📚 חזרתי ללמוד"}],
+                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}]
             ],
-            "resize_keyboard": True,
-            "is_persistent": True
+            "resize_keyboard": True
         }
         
-        payload = {
-            "chat_id": self.chat_id, 
-            "text": message,
-            "reply_markup": keyboard
-        }
+        payload = {"chat_id": self.chat_id, "text": message, "reply_markup": keyboard}
         try:
             requests.post(url, json=payload)
         except Exception:
@@ -178,8 +293,12 @@ class StudyManager:
                             sender_id = str(update["message"]["chat"]["id"])
                             
                             if sender_id == self.chat_id:
-                                # עכשיו אנחנו בודקים בדיוק איזה כפתור נלחץ
-                                if "השהה" in text:
+                                # זיהוי שאתה מתעצבן עליו או מאשר שקמת
+                                if any(word in text for word in ["קמתי", "יצאתי", "הפסקה"]):
+                                    self.start_break()
+                                elif any(word in text for word in ["חזרתי", "פה", "ללמוד", "שולחן"]):
+                                    self.start_study()
+                                elif "השהה" in text:
                                     self.pause_study()
                                 elif "המשך" in text:
                                     self.resume_study()

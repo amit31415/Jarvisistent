@@ -94,6 +94,22 @@ class StudyManager:
             return f"נשארו לך עוד {remaining_minutes} דקות ללמוד."
         elif self.state == "ON_BREAK":
             return f"נשארו לך עוד {remaining_minutes} דקות להפסקה."
+    
+    def add_time(self, minutes):
+        """מוסיף או מוריד זמן מהטיימר הקיים"""
+        if self.state in ["STUDYING", "WAITING_FOR_BREAK"]:
+            self.end_time += (minutes * 60)
+            word = "הוספתי" if minutes > 0 else "הורדתי"
+            self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות מהטיימר.")
+            return f"{word} {abs(minutes)} דקות מהטיימר. {self.get_time_left()}"
+            
+        elif self.state == "PAUSED":
+            self.remaining_paused_time += (minutes * 60)
+            word = "הוספתי" if minutes > 0 else "הורדתי"
+            self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות (הטיימר עדיין מושהה).")
+            return f"{word} {abs(minutes)} דקות. הטיימר עדיין מושהה."
+            
+        return "אין טיימר פעיל כדי לשנות לו את הזמן."
 
     def _start_monitor_thread(self):
         threading.Thread(target=self._monitor_loop, daemon=True).start()

@@ -196,21 +196,24 @@ def get_upcoming_events():
     except Exception as e:
         return f"שגיאה טכנית מול גוגל קלנדר: {str(e)}"
 
-def manage_study_mode(action: str) -> str:
+def manage_study_mode(action: str, minutes: int = 0) -> str:
     """
     מנהל את מצב הלמידה (Pomodoro Timer) של הבוס.
     השתמש בכלי זה כאשר הבוס מבקש:
     1. להתחיל ללמוד ('start')
     2. לעצור ולבטל לחלוטין ('stop')
-    3. להשהות/לעשות פאוזה לטיימר ('pause') - חשוב: להשהות זה לא לבטל!
+    3. להשהות/לעשות פאוזה לטיימר ('pause')
     4. להמשיך טיימר שהושהה ('resume')
     5. לצאת להפסקה ('break')
     6. לשאול כמה זמן נשאר ('status')
+    7. להוסיף, להאריך, להוריד או לקצר את הזמן ('add_time'). 
+       * חובה להעביר את כמות הדקות בפרמטר minutes. (מספר חיובי כדי להוסיף, ומספר שלילי כדי לקצר/להוריד).
     
     Args:
-        action: חובה לבחור: 'start', 'stop', 'pause', 'resume', 'break', 'status'.
+        action: חובה לבחור: 'start', 'stop', 'pause', 'resume', 'break', 'status', 'add_time'.
+        minutes: מספר הדקות להוסיף או להוריד (רלוונטי רק לפעולת add_time).
     """
-    print(f"[INFO] AI executing: manage_study_mode(action='{action}')")
+    print(f"[INFO] AI executing: manage_study_mode(action='{action}', minutes={minutes})")
     
     if action == 'start':
         return study_manager.start_study()
@@ -224,9 +227,11 @@ def manage_study_mode(action: str) -> str:
         return study_manager.start_break()
     elif action == 'status':
         return study_manager.get_time_left()
+    elif action == 'add_time':
+        return study_manager.add_time(minutes)
         
     return "פעולה לא חוקית."
-
+    
 # רשימת הכלים שאנחנו נותנים למוח של ג'ארוויס (כולל חיפוש בגוגל מובנה!)
 jarvis_tools = [
     check_general_emails,

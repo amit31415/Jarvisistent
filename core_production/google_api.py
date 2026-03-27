@@ -4,6 +4,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 import base64
+import datetime
 
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.readonly',
@@ -109,66 +110,54 @@ def get_unread_emails(max_results=40):
         return f"[ERROR] Failed to fetch emails: {e}"
 
 
-def get_specific_email(search_term):
-    """מחפש מיילים ספציפיים בג'ימייל ומחזיר את התוכן והתקציר שלהם"""
+def get_specific_email(search_term, max_results=3):
+    """מחפש מיילים ספציפיים בג'ימייל ומחזיר את התוכן המלא שלהם"""
     try:
-        from google.oauth2.credentials import Credentials
-        from googleapiclient.discovery import build
-        import os
-
-        # טעינת ההרשאות מקובץ הטוקן
-        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
-        if not os.path.exists(token_path):
-            return "שגיאה: קובץ token.json חסר."
-        
-        creds = Credentials.from_authorized_user_file(token_path, ['https://www.googleapis.com/auth/gmail.readonly'])        
-        service = build('gmail', 'v1', credentials=creds)
-
-        # מחפש בג'ימייל (מביא את 3 התוצאות הכי רלוונטיות)
-        results = service.users().messages().list(userId='me', q=search_term, maxResults=3).execute()
+        service = get_gmail_service()
+        query = f"{search_term} newer_than:14d"
+        results = service.users().messages().list(userId='me', q=query, maxResults=max_results).execute()
         messages = results.get('messages', [])
 
         if not messages:
-            return f"לא מצאתי מיילים שקשורים ל: {search_term}"
+            return f"לא מצאתי מיילים התואמים לחיפוש '{search_term}' בשבועיים האחרונים."
 
-        output = ""
-        for msg in messages:
-            msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
-            payload = msg_data.get('payload', {})
+        email_data = []
+        for index, msg in enumerate(messages, 1):
+            msg_id = msg['id']
+            message = service.users().messages().get(userId='me', id=msg_id, format='full').execute()
+            payload = message.get('payload', {})
             headers = payload.get('headers', [])
             
-            subject = next((header['value'] for header in headers if header['name'].lower() == 'subject'), "ללא נושא")
-            sender = next((header['value'] for header in headers if header['name'].lower() == 'from'), "לא ידוע")
-            snippet = msg_data.get('snippet', '')
+            subject = "ללא נושא"
+            sender = "לא ידוע"
+            date_sent = "לא ידוע"
 
-            output += f"מאת: {sender}\nנושא: {subject}\nתקציר: {snippet}\n\n"
+            for header in headers:
+                if header['name'] == 'Subject':
+                    subject = header['value']
+                if header['name'] == 'From':
+                    sender = header['value'].split('<')[0].strip()
+                if header['name'] == 'Date':
+                    date_sent = header['value']
 
-        return output
+            full_body = get_email_body(payload)
+            if not full_body.strip():
+                full_body = message.get('snippet', '')
+
+            email_data.append(f"מייל {index}:\nתאריך: {date_sent}\nמאת: {sender}\nנושא: {subject}\nתוכן מלא:\n{full_body.strip()}")
+
+        return "\n\n====================\n\n".join(email_data)
 
     except Exception as e:
-        return f"שגיאה טכנית מול גוגל במהלך החיפוש: {str(e)}"
+        return f"[ERROR] Failed to fetch specific email: {e}"
 
 def get_upcoming_events():
     """מושך את האירועים הקרובים מהיומן של גוגל."""
     max_results = 5
     try:
-        from google.oauth2.credentials import Credentials
-        from googleapiclient.discovery import build
-        import os
-        import datetime
-
-        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
-        if not os.path.exists(token_path):
-            return "שגיאה: קובץ token.json חסר."
-        
-        # טוען את הטוקן עם כל ההרשאות
-        SCOPES = [
-            'https://www.googleapis.com/auth/gmail.readonly',
-            'https://www.googleapis.com/auth/tasks',
-            'https://www.googleapis.com/auth/calendar.readonly',
-            'https://www.googleapis.com/auth/drive.readonly'
-        ]
-        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+        creds = authenticate_google()
+        if not creds:
+            return "שגיאה: אימות גוגל נכשל. יש להריץ את get_token.py"
         service = build('calendar', 'v3', credentials=creds)
 
         # לוקח את הזמן הנוכחי כדי להביא רק אירועים מעכשיו והלאה

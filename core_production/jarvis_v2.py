@@ -158,46 +158,6 @@ def check_calendar(query: str) -> str:
     except Exception as e:
         return f"שגיאה בקריאת היומן: {str(e)}"
 
-
-def get_upcoming_events():
-    """מושך את האירועים הקרובים מהיומן של גוגל."""
-    max_results = 5
-    try:
-        from google.oauth2.credentials import Credentials
-        from googleapiclient.discovery import build
-        import os
-        import datetime
-
-        token_path = os.path.join(os.path.dirname(__file__), 'token.json')
-        if not os.path.exists(token_path):
-            return "שגיאה: קובץ token.json חסר."
-        
-        # טוען את הטוקן עם כל ההרשאות
-        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
-        service = build('calendar', 'v3', credentials=creds)
-
-        # לוקח את הזמן הנוכחי כדי להביא רק אירועים מעכשיו והלאה
-        now = datetime.datetime.utcnow().isoformat() + 'Z'
-        events_result = service.events().list(calendarId='primary', timeMin=now,
-                                              maxResults=max_results, singleEvents=True,
-                                              orderBy='startTime').execute()
-        events = events_result.get('items', [])
-
-        if not events:
-            return "אין אירועים קרובים ביומן."
-
-        output = "אירועים קרובים ביומן:\n"
-        for event in events:
-            # מנסה לקחת שעת התחלה (או תאריך אם זה אירוע של יום שלם)
-            start = event['start'].get('dateTime', event['start'].get('date'))
-            summary = event.get('summary', 'ללא כותרת')
-            output += f"- {summary} (מתחיל ב: {start})\n"
-
-        return output
-
-    except Exception as e:
-        return f"שגיאה טכנית מול גוגל קלנדר: {str(e)}"
-
 def manage_study_mode(action: str, minutes: int = 0) -> str:
     """
     מנהל את מצב הלמידה (Pomodoro Timer) של הבוס.
@@ -234,15 +194,6 @@ def manage_study_mode(action: str, minutes: int = 0) -> str:
         
     return "פעולה לא חוקית."
 
-def set_alarm_clock(time_str: str) -> str:
-    """
-    מכוון שעון מעורר לשעה מסוימת שמבקש הבוס.
-    Args:
-        time_str: השעה בפורמט HH:MM בלבד! (למשל '07:30' או '22:15').
-    """
-    print(f"[INFO] AI executing: set_alarm_clock('{time_str}')")
-    return alarm_manager.set_alarm(time_str)
-
 def manage_alarm_clock(action: str, time_str: str = "") -> str:
     """
     מנהל את השעונים המעוררים של הבוס. כל השעונים נשמרים בקובץ זיכרון.
@@ -278,11 +229,8 @@ jarvis_tools = [
     remember_fact,
     search_web,
     check_calendar,
-    get_upcoming_events,
     manage_study_mode,
-    set_alarm_clock,
     manage_alarm_clock
-    
 ]
 
 study_manager = StudyManager()
@@ -342,6 +290,23 @@ except Exception as e:
 def contains_hebrew(text):
     return bool(re.search(r'[\u0590-\u05FF]', text))
 
+def get_audio_stream(pa, sample_rate, frame_length):
+    """מנסה לפתוח זרם שמע, ואם אין התקן ברירת מחדל, מחפש התקן קלט פעיל."""
+    device_index = None
+    try:
+        pa.get_default_input_device_info()
+    except OSError:
+        for i in range(pa.get_device_count()):
+            dev_info = pa.get_device_info_by_index(i)
+            if dev_info.get('maxInputChannels', 0) > 0:
+                device_index = i
+                break
+
+    return pa.open(
+        rate=sample_rate, channels=1, format=pyaudio.paInt16,
+        input=True, frames_per_buffer=frame_length, input_device_index=device_index
+    )
+
 def speak(text, porcupine=None, pa=None):
     clean_text = re.sub(r'<[^>]+>', '', text).replace("*", "").strip()
     if not clean_text: return False
@@ -362,7 +327,7 @@ def speak(text, porcupine=None, pa=None):
         if porcupine and pa:
             temp_stream = None # מגדירים מראש כדי למנוע קריסה
             try:
-                temp_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+                temp_stream = get_audio_stream(pa, porcupine.sample_rate, porcupine.frame_length)
                 while player.poll() is None:
                     pcm = temp_stream.read(porcupine.frame_length, exception_on_overflow=False)
                     pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
@@ -506,7 +471,14 @@ def run_jarvis():
         return
 
     pa = pyaudio.PyAudio()
-    audio_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+    
+    while True:
+        try:
+            audio_stream = get_audio_stream(pa, porcupine.sample_rate, porcupine.frame_length)
+            break
+        except Exception as e:
+            print(f"[WARNING] Waiting for microphone on startup... ({e})")
+            time.sleep(3)
 
     os.system('clear')
     speak("Jarvis V2 Core is online. Awaiting command.")
@@ -514,12 +486,25 @@ def run_jarvis():
 
     try:
         while True:
-            pcm = audio_stream.read(porcupine.frame_length, exception_on_overflow=False)
+            try:
+                pcm = audio_stream.read(porcupine.frame_length, exception_on_overflow=False)
+            except Exception as e:
+                print(f"[ERROR] Audio read failed: {e}. Retrying...")
+                try:
+                    audio_stream.close()
+                except:
+                    pass
+                time.sleep(2)
+                try:
+                    audio_stream = get_audio_stream(pa, porcupine.sample_rate, porcupine.frame_length)
+                except:
+                    pass
+                continue
+
             pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
 
             if porcupine.process(pcm) >= 0:
                 print("\n[WAKE SAME WORD DETECTED]")
-                # שינינו כאן ל-wake.mp3
                 subprocess.run(['mpv', '/home/kido1/Smartroom/wake.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 
                 audio_stream.stop_stream()
@@ -527,7 +512,14 @@ def run_jarvis():
 
                 run_conversation_session(porcupine, pa)
 
-                audio_stream = pa.open(rate=porcupine.sample_rate, channels=1, format=pyaudio.paInt16, input=True, frames_per_buffer=porcupine.frame_length)
+                while True:
+                    try:
+                        audio_stream = get_audio_stream(pa, porcupine.sample_rate, porcupine.frame_length)
+                        break
+                    except Exception as e:
+                        print(f"[WARNING] Waiting for microphone to become available... ({e})")
+                        time.sleep(3)
+
                 print("\n[INFO] Standing by...")
 
     except KeyboardInterrupt:

@@ -19,6 +19,8 @@ from ctypes import *
 from google import genai
 from google.genai import types
 from study_mode import StudyManager
+from alarm_mode import AlarmManager
+alarm_manager = AlarmManager()
 
 # --- 1. ALSA Error Handler (השתקת שגיאות אודיו מציקות) ---
 ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
@@ -232,6 +234,37 @@ def manage_study_mode(action: str, minutes: int = 0) -> str:
         
     return "פעולה לא חוקית."
 
+def set_alarm_clock(time_str: str) -> str:
+    """
+    מכוון שעון מעורר לשעה מסוימת שמבקש הבוס.
+    Args:
+        time_str: השעה בפורמט HH:MM בלבד! (למשל '07:30' או '22:15').
+    """
+    print(f"[INFO] AI executing: set_alarm_clock('{time_str}')")
+    return alarm_manager.set_alarm(time_str)
+
+def manage_alarm_clock(action: str, time_str: str = "") -> str:
+    """
+    מנהל את השעונים המעוררים של הבוס. כל השעונים נשמרים בקובץ זיכרון.
+    פעולות אפשריות (action):
+    1. 'set' - כיוון שעון מעורר חדש. 
+       * חובה להעביר את השעה בפרמטר time_str בפורמט 24 שעות (HH:MM). המר את המילים של הבוס לפורמט זה.
+    2. 'cancel' - ביטול שעון. העבר את השעה (HH:MM) ב-time_str כדי למחוק שעון ספציפי, או השאר ריק/העבר 'all' כדי למחוק הכל.
+    3. 'list' - כשהבוס שואל אילו שעונים מכוונים לו או מתי הוא צריך לקום.
+    """
+    print(f"[INFO] AI executing: manage_alarm_clock(action='{action}', time_str='{time_str}')")
+    
+    if action == 'set':
+        if not time_str:
+            return "חובה לציין שעה בפורמט HH:MM."
+        return alarm_manager.set_alarm(time_str)
+    elif action == 'cancel':
+        return alarm_manager.cancel_alarm(time_str)
+    elif action == 'list':
+        return alarm_manager.get_alarms()
+        
+    return "פעולה לא חוקית."
+
 # רשימת הכלים שאנחנו נותנים למוח של ג'ארוויס (כולל חיפוש בגוגל מובנה!)
 jarvis_tools = [
     check_general_emails,
@@ -246,7 +279,9 @@ jarvis_tools = [
     search_web,
     check_calendar,
     get_upcoming_events,
-    manage_study_mode
+    manage_study_mode,
+    set_alarm_clock,
+    manage_alarm_clock
     
 ]
 
@@ -418,6 +453,13 @@ def run_conversation_session(porcupine, pa):
             silence_count = 0
             print(f"\n[You]: {user_input}")
             user_text = user_input.lower()
+
+            # --- השתלת מוח: שעון מעורר טריוויה ---
+            alarm_response = alarm_manager.process_voice_command(user_text)
+            if alarm_response:
+                speak(alarm_response, porcupine, pa)
+                continue
+            # --------------------------------------
             
             # יציאה מהירה
             exit_words = ["בטל", "עזוב", "לא משנה", "מספיק", "תודה", "זהו", "ביי", "stop", "exit"]

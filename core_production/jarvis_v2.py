@@ -291,15 +291,26 @@ def contains_hebrew(text):
     return bool(re.search(r'[\u0590-\u05FF]', text))
 
 def get_audio_stream(pa, sample_rate, frame_length):
-    """מנסה לפתוח זרם שמע, ואם אין התקן ברירת מחדל, מחפש התקן קלט פעיל."""
+    """מחפש ספציפית את המיקרופון של הג'אברה או USB כדי למנוע קריסות של לינוקס"""
     device_index = None
-    try:
-        pa.get_default_input_device_info()
-    except OSError:
+    
+    # סורק את כל ההתקנים ומחפש ספציפית את הג'אברה
+    for i in range(pa.get_device_count()):
+        dev_info = pa.get_device_info_by_index(i)
+        if dev_info.get('maxInputChannels', 0) > 0:
+            name = dev_info.get('name', '')
+            if "Jabra" in name or "USB" in name:
+                device_index = i
+                print(f"[INFO] 🎯 Locked on Jabra/USB Mic at Index {i}")
+                break
+                
+    # אם משום מה הג'אברה נותק, ננסה לקחת את הראשון שעובד כגיבוי אחרון
+    if device_index is None:
         for i in range(pa.get_device_count()):
             dev_info = pa.get_device_info_by_index(i)
             if dev_info.get('maxInputChannels', 0) > 0:
                 device_index = i
+                print(f"[WARNING] Jabra not found. Falling back to Index {i}")
                 break
 
     return pa.open(

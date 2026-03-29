@@ -322,48 +322,30 @@ def speak(text, porcupine=None, pa=None):
     clean_text = re.sub(r'<[^>]+>', '', text).replace("*", "").strip()
     if not clean_text: return False
     
-    print(f"\n[Jarvis]: {clean_text}")
+    print(f"\n[Jarvis]: {clean_text}", flush=True)
 
     try:
         voice = "he-IL-AvriNeural" if contains_hebrew(clean_text) else "en-GB-RyanNeural"
         edge_tts_cmd = '/home/kido1/Smartroom/.venv/bin/edge-tts'
 
+        # 1. מייצרים את קובץ הקול
         subprocess.run([
             edge_tts_cmd, '--text', clean_text, '--write-media', 'response.mp3',
             '--voice', voice, '--rate=+15%'
         ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-        player = subprocess.Popen(['mpv', 'response.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # 2. פקודה חוסמת: ג'ארוויס מדבר ואוטם אוזניים. פייתון לא מתקדם שורה עד שהדיבור מסתיים!
+        subprocess.run(['mpv', 'response.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
-        if porcupine and pa:
-            temp_stream = None # מגדירים מראש כדי למנוע קריסה
-            try:
-                temp_stream = get_audio_stream(pa, porcupine.sample_rate, porcupine.frame_length)
-                while player.poll() is None:
-                    pcm = temp_stream.read(porcupine.frame_length, exception_on_overflow=False)
-                    pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
-                    if porcupine.process(pcm) >= 0:
-                        player.terminate() 
-                        print("\n[INTERRUPTED BY USER]")
-                        subprocess.run(['mpv', 'alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                        return True 
-            except Exception as e:
-                pass # מתעלם משגיאות מיקרופון זמניות בזמן דיבור
-            finally:
-                # התיקון הקריטי: סוגר רק אם הזרם באמת נפתח!
-                if temp_stream is not None:
-                    try:
-                        temp_stream.stop_stream()
-                        temp_stream.close()
-                    except:
-                        pass
-        else:
-            player.wait()
+        # 3. מרווח נשימה: נותנים לכרטיס הקול של הג'אברה חצי שנייה להתאפס לפני שהמיקרופון נפתח שוב
+        import time
+        time.sleep(0.5)
+        
         return False
+
     except Exception as e:
         print(f"Speak Error: {e}")
         return False
-
         
 def listen():
     r = sr.Recognizer()

@@ -3,6 +3,7 @@ import datetime
 import threading
 import subprocess
 import os
+import random
 import json
 from dotenv import load_dotenv
 from google import genai
@@ -97,10 +98,26 @@ class AlarmManager:
             time.sleep(10)
 
     def _noise_loop(self):
-        print("\n[ALARM] Noise loop started! Playing sound...", flush=True)
-        # שמנו נתיב מוחלט כדי ש-MPV לא ילך לאיבוד ברקע
-        alert_path = '/home/kido1/Smartroom/YaFat3.mp3'
+        print("\n[ALARM] Noise loop started! Picking a random sound...", flush=True)
         
+        alarms_dir = '/home/kido1/Smartroom/alarms'
+        fallback_alarm = '/home/kido1/Smartroom/alert.mp3'
+        
+        # Scan the folder for MP3s
+        available_alarms = []
+        if os.path.exists(alarms_dir):
+            available_alarms = [f for f in os.listdir(alarms_dir) if f.endswith('.mp3')]
+        
+        # Pick a random sound, or use the default if the folder is empty
+        if available_alarms:
+            chosen_file = random.choice(available_alarms)
+            alert_path = os.path.join(alarms_dir, chosen_file)
+            print(f"[ALARM] Playing: {chosen_file}", flush=True)
+        else:
+            alert_path = fallback_alarm
+            print("[ALARM] No custom alarms found. Using fallback alert.", flush=True)
+            
+        # Blast it until the boss wakes up
         while self.state == "RINGING":
             try:
                 subprocess.run(['mpv', alert_path, '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

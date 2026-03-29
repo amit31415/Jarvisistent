@@ -5,6 +5,7 @@ import subprocess
 import os
 import json
 import random
+import signal
 from dotenv import load_dotenv
 from google import genai
 
@@ -110,15 +111,40 @@ class AlarmManager:
             alert_path = fallback_alarm
             print("[ALARM] No custom alarms found. Using fallback alert.", flush=True)
             
+        # פותחים את הנגן ברקע עם לולאה אינסופית (כדי שהשיר יתנגן שוב אם הוא נגמר)
+        player = subprocess.Popen(
+            ['mpv', alert_path, '--loop=inf', '--volume=75', '--no-terminal'], 
+            stdout=subprocess.DEVNULL, 
+            stderr=subprocess.DEVNULL
+        )
+        
         while self.state == "RINGING":
-            try:
-                # "timeout 3" מבטיח שהנגן ייהרג בוודאות אחרי 3 שניות, לא משנה מה אורך הקובץ
-                subprocess.run(['timeout', '3', 'mpv', alert_path, '--volume=70', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            except Exception as e:
-                print(f"[ALARM ERROR] MPV failed: {e}", flush=True)
+            # נותנים לו לנגן 4 שניות (אבל בודקים כל חצי שנייה אם ענית)
+            for _ in range(8):
+                if self.state != "RINGING": break
+                time.sleep(0.5)
+                
+            if self.state != "RINGING": break
+                
+            # "מקפיאים" את הנגן לחלוטין. דממה מוחלטת מתחילה עכשיו.
+            os.kill(player.pid, signal.SIGSTOP)
             
-            # חלון שקט מורחב: 4 שניות של דממה כדי שהג'אברה יפתח את המיקרופון חזרה
-            time.sleep(4)
+            # חלון ההקשבה של המיקרופון: 3 שניות של שקט
+            for _ in range(6):
+                if self.state != "RINGING": break
+                time.sleep(0.5)
+                
+            # "מפשירים" את הנגן - הוא ימשיך בדיוק מאותה מילי-שנייה שעצר!
+            if self.state == "RINGING":
+                os.kill(player.pid, signal.SIGCONT)
+                
+        # ברגע שהשעון בוטל, אנחנו מחסלים את הנגן סופית
+        try:
+            # חייבים להפשיר אותו לפני שהורגים, אחרת הוא הופך ל"תהליך זומבי" בלינוקס
+            os.kill(player.pid, signal.SIGCONT) 
+            player.terminate()
+        except:
+            pass
 
     def _trivia_timeout(self):
         """גלאי הירדמות: אם הבוס מתעלם 45 שניות, האזעקה חוזרת"""

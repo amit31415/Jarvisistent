@@ -71,29 +71,42 @@ class AlarmManager:
         return "השעונים המכוונים כרגע הם לשעות: " + ", ".join(alarms)
 
     def _wait_loop(self):
+        last_printed_min = ""
         while True:
             if self.state == "IDLE":
                 now = datetime.datetime.now().strftime("%H:%M")
                 alarms = self._load_alarms()
                 
+                if now != last_printed_min:
+                    # הוספנו flush=True כדי שזה בטוח יופיע בלוגים שלך
+                    print(f"\n[DEBUG ALARM] Python Time: {now} | Loaded Alarms: {alarms}", flush=True)
+                    last_printed_min = now
+                
                 if now in alarms:
-                    print(f"\n[ALARM TRIGGERED] Time is {now}!")
+                    print(f"\n[ALARM TRIGGERED] Waking up the boss! Time is {now}!", flush=True)
                     self.state = "RINGING"
                     
-                    # מוחק את השעון אחרי שפעל כדי שלא יצלצל מחר שוב
-                    alarms.remove(now)
-                    self._save_alarms(alarms)
+                    try:
+                        alarms.remove(now)
+                        self._save_alarms(alarms)
+                    except:
+                        pass
                     
                     threading.Thread(target=self._noise_loop, daemon=True).start()
             
-            time.sleep(10) # בודק את השעה כל עשר שניות
+            time.sleep(10)
 
     def _noise_loop(self):
+        print("\n[ALARM] Noise loop started! Playing sound...", flush=True)
+        # שמנו נתיב מוחלט כדי ש-MPV לא ילך לאיבוד ברקע
+        alert_path = '/home/kido1/Smartroom/YaFat3.mp3'
+        
         while self.state == "RINGING":
             try:
-                subprocess.run(['mpv', 'alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            except:
-                pass
+                subprocess.run(['mpv', alert_path, '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            except Exception as e:
+                print(f"[ALARM ERROR] MPV failed: {e}", flush=True)
+            
             time.sleep(2)
 
     def process_voice_command(self, text):

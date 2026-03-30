@@ -120,7 +120,7 @@ def get_current_time() -> str:
     return datetime.datetime.now().strftime("%H:%M, %A, %d/%m/%Y")
 
 def shutdown_system() -> str:
-    """מכבה את הרסברי פאי לחלוטין. השתמש אך ורק כשהבוס מבקש במפורש לכבות את המערכת או את הרסברי פאי."""
+    """מכבה את הרסברי פאי לחלוטין. השתמש אך ורק כשהבוס מבקש במפורש לכבות את המערכת או את הרסברי פאי. ןמשממש מפורשות במילה shutdown"""
     print("[INFO] AI executing: shutdown_system()")
     os.system("sudo shutdown -h now")
     return "מכבה את המערכת."

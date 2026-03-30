@@ -1,0 +1,146 @@
+[
+    {
+        "session_date": "2026-03-29",
+        "start_time": "22:23:48",
+        "end_time": "22:25:10",
+        "total_session_minutes": 1.37,
+        "total_study_minutes": 1.23,
+        "total_break_minutes": 0,
+        "study_cycles": 2,
+        "pause_count": 1,
+        "extra_study_added": 0,
+        "extra_break_added": 0,
+        "timeline": [
+            {
+                "phase": "study",
+                "duration_minutes": 0.18
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 0.14
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 1.05
+            }
+        ]
+    },
+    {
+        "session_date": "2026-03-29",
+        "start_time": "22:25:40",
+        "end_time": "22:26:49",
+        "total_session_minutes": 1.14,
+        "total_study_minutes": 0.53,
+        "total_break_minutes": 0.4,
+        "study_cycles": 4,
+        "pause_count": 2,
+        "extra_study_added": 0,
+        "extra_break_added": 10,
+        "timeline": [
+            {
+                "phase": "study",
+                "duration_minutes": 0.09
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 0.08
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 0.1
+            },
+            {
+                "phase": "break",
+                "duration_minutes": 0.4
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 0.23
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 0.13
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 0.11
+            }
+        ]
+    },
+    {
+        "session_date": "2026-03-29",
+        "start_time": "23:34:44",
+        "end_time": "01:14:37",
+        "total_session_minutes": 99.87,
+        "total_study_minutes": 92.67,
+        "total_break_minutes": 0.7,
+        "study_cycles": 3,
+        "pause_count": 1,
+        "extra_study_added": -10,
+        "extra_break_added": 0,
+        "timeline": [
+            {
+                "phase": "study",
+                "duration_minutes": 68.75
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 6.51
+            },
+            {
+                "phase": "break",
+                "duration_minutes": 0.7
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 23.85
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 0.07
+            }
+        ]
+    },
+    {
+        "session_date": "2026-03-30",
+        "start_time": "18:01:16",
+        "end_time": "20:35:53",
+        "total_session_minutes": 154.61,
+        "total_study_minutes": 84.61,
+        "total_break_minutes": 30.3,
+        "study_cycles": 2,
+        "pause_count": 2,
+        "extra_study_added": 35,
+        "extra_break_added": 0,
+        "timeline": [
+            {
+                "phase": "study",
+                "duration_minutes": 23.76
+            },
+            {
+                "phase": "study",
+                "duration_minutes": 60.85
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 39.65
+            },
+            {
+                "phase": "break",
+                "duration_minutes": 19.83
+            },
+            {
+                "phase": "break",
+                "duration_minutes": 0.16
+            },
+            {
+                "phase": "pause",
+                "duration_minutes": 0.05
+            },
+            {
+                "phase": "break",
+                "duration_minutes": 10.31
+            }
+        ]
+    }
+]

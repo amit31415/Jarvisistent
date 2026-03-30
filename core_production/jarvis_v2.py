@@ -363,7 +363,7 @@ def listen():
         sys.stdout.flush()
         try:
             r.adjust_for_ambient_noise(source, duration=0.5)
-            audio = r.listen(source, timeout=5, phrase_time_limit=10)
+            audio = r.listen(source, timeout=2, phrase_time_limit=10)
             sys.stdout.write("\r Processing...")
             sys.stdout.flush()
             return r.recognize_google(audio, language="he-IL") 

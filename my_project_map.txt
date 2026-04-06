@@ -1,0 +1,63 @@
+.
+├── alarms
+│   ├── YaFat3.mp3
+│   └── בובספוג - קום כבר תתחיל לזוז [G93kpNrq9Z8].mp3
+├── alarms_memory.json
+├── archive
+│   ├── jarvis_backup.py
+│   ├── jarvis_backup_working.py
+│   ├── jarvis_gemma.py
+│   ├── jarvis.py
+│   ├── jarvis.pyט
+│   ├── main.py
+│   └── test_ollama.py
+├── core_production
+│   ├── alarm_mode.py
+│   ├── alert.mp3
+│   ├── api_quota.json
+│   ├── auto_push.sh
+│   ├── backup.log
+│   ├── credentials.json
+│   ├── get_token.py
+│   ├── google_api.py
+│   ├── jarvis_debug.log
+│   ├── jarvis_memory.json
+│   ├── jarvis.py
+│   ├── jarvis_v2.py
+│   ├── local_memory.py
+│   ├── response.mp3
+│   ├── study_mode.py
+│   └── token.json
+├── diagnostics_and_tests
+│   ├── check_audio.py
+│   ├── check_models.py
+│   ├── check_system.py
+│   ├── ears_test.py
+│   ├── find_mic.py
+│   ├── list_models.py
+│   ├── mic_check.py
+│   ├── scope.py
+│   └── test_env.py
+├── jarvis_memory
+│   └── general
+│       ├── אני.txt
+│       ├── משימות.txt
+│       └── תוסיף.txt
+├── jarvis_v2.log
+├── local_sandboxes
+│   ├── lama_jarvis.py
+│   ├── Qwan_jarvis.py
+│   └── response.mp3
+├── logs
+│   ├── backup.log
+│   ├── jarvis_debug.log
+│   └── jarvis_v2.log
+├── my_project_map.txt
+├── response.mp3
+├── study_alert.mp3
+├── study_stats.json
+├── token.json
+├── wake.mp3
+└── YaFat3.mp3
+
+9 directories, 52 files

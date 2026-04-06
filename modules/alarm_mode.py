@@ -11,7 +11,7 @@ from google import genai
 
 load_dotenv()
 
-ALARMS_FILE = 'alarms_memory.json'
+ALARMS_FILE = '/home/kido1/Smartroom/data/alarms_memory.json'
 
 class AlarmManager:
     def __init__(self):
@@ -42,6 +42,14 @@ class AlarmManager:
             alarms.append(time_str)
             self._save_alarms(alarms)
             return f"הוספתי שעון מעורר לשעה {time_str}. הוא נשמר בזיכרון."
+        return f"כבר יש לך שעון מכוון לשעה {time_str}."
+
+    def delete_alarm(self, time_str):
+        alarms = self._load_alarms()
+        if time_str in alarms:
+            alarms.pop(time_str)
+            self._save_alarms(alarms)
+            return f"מחקתי שעון מעורר בשעה {time_str}. הוא נמחק מהזיכרון."
         return f"כבר יש לך שעון מכוון לשעה {time_str}."
 
     def cancel_alarm(self, time_str=None):
@@ -164,7 +172,7 @@ class AlarmManager:
                 self.state = "TRIVIA"
                 
                 # ההוראה עודכנה לשאלות הגיוניות יותר
-                prompt = "תמציא שאלת ידע כללי קלילה עד בינונית. משהו שרוב האנשים יודעים אבל דורש חצי דקה של ריכוז על הבוקר (למשל: כמה ימים יש בשנה מעוברת, מה בירת צרפת, איזה כוכב לכת הכי קרוב לשמש). תחזיר רק את השאלה בעברית, ללא התשובה וללא מרכאות."
+                prompt = "תמציא שאלת ידע כללי קלילה עד בינונית. משהו שרוב האנשים יודעים אבל דורש חצי דקה של ריכוז על הבוקר (למשל: כמה ימים יש בשנה מעוברת, מה בירת צרפת, איזה כוכב לכת הכי קרוב לשמש, שאלות פשוטות במתמטיקה, פיזיקה ובכללי מכונות בתחומים שנלמדים בהנדסת מכונות כשנלמדו תרמודינמיקה, תכונות מכאניות של חומרים, דינמיקה). תחזיר רק את השאלה בעברית, ללא התשובה וללא מרכאות."
                 try:
                     self.question = self.gemini_client.models.generate_content(model='gemini-2.5-flash', contents=prompt).text.strip()
                 except:

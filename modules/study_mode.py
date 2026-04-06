@@ -8,9 +8,9 @@ import datetime
 from dotenv import load_dotenv
 from google import genai
 
-load_dotenv() 
+load_dotenv('/home/kido1/Smartroom/.env', override=True)
 
-STATS_FILE = '/home/kido1/Smartroom/study_stats.json'
+STATS_FILE = '/home/kido1/Smartroom/data/study_stats.json'
 
 # ==========================================
 # קופסה שחורה - מעקב וסטטיסטיקות למידה
@@ -103,7 +103,7 @@ class StudyManager:
         self.previous_state = "IDLE"   
         self.last_update_id = 0 
         self.extra_break_time = 0
-        self.tracker = None # שילוב האנליטיקה
+        self.tracker = None 
 
         self.bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
         self.chat_id = os.getenv("TELEGRAM_BOT_ID")
@@ -121,20 +121,21 @@ class StudyManager:
 
     # ------------------ TELEGRAM UI ------------------
     def _get_dynamic_keyboard(self):
-        """מייצר כפתורים לטלגרם בהתאם לסטטוס הנוכחי"""
         if self.state == "IDLE":
             return {"keyboard": [[{"text": "🚀 התחל סשן למידה"}]], "resize_keyboard": True}
         
         elif self.state in ["STUDYING", "WAITING_FOR_BREAK", "NAGGING_TO_BREAK"]:
             return {"keyboard": [
                 [{"text": "⏸️ השהה למידה"}, {"text": "☕ יצאתי להפסקה"}],
-                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}]
+                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}],
+                [{"text": "➕ 5 דקות"}, {"text": "➖ 5 דקות"}]
             ], "resize_keyboard": True}
             
         elif self.state in ["ON_BREAK", "NAGGING_TO_STUDY"]:
             return {"keyboard": [
                 [{"text": "⏸️ השהה הפסקה"}, {"text": "📚 חזרתי ללמוד"}],
-                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}]
+                [{"text": "⏱️ סטטוס זמן"}, {"text": "🛑 סיום סשן"}],
+                [{"text": "➕ 5 דקות"}, {"text": "➖ 5 דקות"}]
             ], "resize_keyboard": True}
             
         elif self.state == "PAUSED":
@@ -154,14 +155,14 @@ class StudyManager:
             "reply_markup": self._get_dynamic_keyboard()
         }
         try:
-            requests.post(url, json=payload)
+            requests.post(url, json=payload, timeout=5)
         except Exception:
             pass
 
     # ------------------ CORE LOGIC ------------------
     def start_study(self):
         if self.state == "IDLE":
-            self.tracker = StudyTracker() # מתחיל סשן חדש רק אם היינו ב-IDLE
+            self.tracker = StudyTracker() 
             
         if self.tracker:
             self.tracker.start_phase("study")
@@ -229,7 +230,6 @@ class StudyManager:
     def stop_study(self):
         if self.state == "IDLE": return "לא רץ שום סשן."
         
-        # סגירת המעקב ושליחת דוח
         stats_msg = "🛑 סשן הלמידה בוטל.\n"
         if self.tracker:
             data = self.tracker.end_session()
@@ -268,9 +268,17 @@ class StudyManager:
             
         elif self.state == "PAUSED":
             self.remaining_paused_time += (minutes * 60)
+            if self.remaining_paused_time < 0: self.remaining_paused_time = 0
             
         else:
             return "אין טיימר פעיל לשנות לו את הזמן."
+
+        # מנגנון הגנה: אם קיצרנו את הזמן ובעצם עברנו את האפס - מפעילים את הפעולה מיד!
+        if self.state in ["STUDYING", "WAITING_FOR_BREAK", "ON_BREAK"]:
+            if time.time() >= self.end_time:
+                self.send_phone_notification("⏳ קיצרת את הזמן והוא נגמר עכשיו!")
+                self._trigger_action()
+                return "הזמן קוצץ ונגמר הרגע."
 
         word = "הוספתי" if minutes > 0 else "הורדתי"
         self.send_phone_notification(f"⏳ {word} לך {abs(minutes)} דקות לטיימר.")
@@ -362,8 +370,8 @@ class StudyManager:
         try:
             print(f"\n[Jarvis]: {text}")
             edge_tts_cmd = '/home/kido1/Smartroom/.venv/bin/edge-tts'
-            subprocess.run([edge_tts_cmd, '--text', text, '--write-media', 'study_alert.mp3', '--voice', 'he-IL-AvriNeural', '--rate=+15%'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            subprocess.run(['mpv', 'study_alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run([edge_tts_cmd, '--text', text, '--write-media', '/home/kido1/Smartroom/temp/study_alert.mp3', '--voice', 'he-IL-AvriNeural', '--rate=+15%'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(['mpv', '/home/kido1/Smartroom/temp/study_alert.mp3', '--no-terminal'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         except: pass
 
     # ------------------ TELEGRAM POLLING ------------------
@@ -393,5 +401,7 @@ class StudyManager:
                                 elif "המשך" in text: self.resume_study()
                                 elif "סיום" in text: self.stop_study()
                                 elif "זמן" in text: self.send_phone_notification(self.get_time_left())
+                                elif "➕" in text: self.add_time(5)
+                                elif "➖" in text: self.add_time(-5)
             except: pass 
             time.sleep(1)

@@ -1,533 +1,1818 @@
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] No changes to backup. Directory is clean.
 [INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[main 2f5e23c] Auto-backup: 2026-03-15 23:00:01
- 2 files changed, 53 insertions(+)
- create mode 100644 credentials.json
- create mode 100644 google_api.py
-[INFO] Pushing to remote repository...
-remote: error: GH013: Repository rule violations found for refs/heads/main.        
-remote: 
-remote: - GITHUB PUSH PROTECTION        
-remote:   —————————————————————————————————————————        
-remote:     Resolve the following violations before pushing again        
-remote: 
-remote:     - Push cannot contain secrets        
-remote: 
-remote:             
-remote:      (?) Learn how to resolve a blocked push        
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
-remote:             
-remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
-remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
-remote:             
-remote:             
-remote:       —— Google OAuth Client ID ————————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqRdIkgiEPzo19JagPGUtiUO        
-remote:             
-remote:             
-remote:       —— Google OAuth Client Secret ————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqUMLR1pACxidNhUU95MLnFZ        
-remote:             
-remote: 
-remote: 
-To github.com:amit31415/Jarvisistent.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-15 23:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[main b3a4dc8] Auto-backup: 2026-03-16 00:00:01
- 2 files changed, 58 insertions(+), 24 deletions(-)
- create mode 100644 token.json
-[INFO] Pushing to remote repository...
-remote: error: GH013: Repository rule violations found for refs/heads/main.        
-remote: 
-remote: - GITHUB PUSH PROTECTION        
-remote:   —————————————————————————————————————————        
-remote:     Resolve the following violations before pushing again        
-remote: 
-remote:     - Push cannot contain secrets        
-remote: 
-remote:             
-remote:      (?) Learn how to resolve a blocked push        
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
-remote:             
-remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
-remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
-remote:             
-remote:             
-remote:       —— Google OAuth Access Token —————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038r6elT6tcif600XKu7YKo72        
-remote:             
-remote:             
-remote:       —— Google OAuth Client ID ————————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqRdIkgiEPzo19JagPGUtiUO        
-remote:             
-remote:             
-remote:       —— Google OAuth Refresh Token ————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038pskq8BpMCPjEKP12HZ8Ulq        
-remote:             
-remote:             
-remote:       —— Google OAuth Client Secret ————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3AzvqUMLR1pACxidNhUU95MLnFZ        
-remote:             
-remote: 
-remote: 
-To github.com:amit31415/Jarvisistent.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-16 00:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[main f130f8f] Auto-backup: 2026-03-17 00:00:01
- 3 files changed, 80 insertions(+), 14 deletions(-)
-[INFO] Pushing to remote repository...
-remote: error: GH013: Repository rule violations found for refs/heads/main.        
-remote: 
-remote: - GITHUB PUSH PROTECTION        
-remote:   —————————————————————————————————————————        
-remote:     Resolve the following violations before pushing again        
-remote: 
-remote:     - Push cannot contain secrets        
-remote: 
-remote:             
-remote:      (?) Learn how to resolve a blocked push        
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
-remote:             
-remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
-remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
-remote:             
-remote:             
-remote:       —— Google OAuth Access Token —————————————————————————        
-remote:        locations:        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGUGGyK7UK2pZ9bceV66Qzhy        
-remote:             
-remote:             
-remote:       —— Google OAuth Access Token —————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038r6elT6tcif600XKu7YKo72        
-remote:             
-remote:             
-remote:       —— Google OAuth Client ID ————————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGRTLGcxZZqe8M4bTiHjIodx        
-remote:             
-remote:             
-remote:       —— Google OAuth Refresh Token ————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B038pskq8BpMCPjEKP12HZ8Ulq        
-remote:             
-remote:             
-remote:       —— Google OAuth Refresh Token ————————————————————————        
-remote:        locations:        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGSAeFf47FcX1oS5m2RuMmNu        
-remote:             
-remote:             
-remote:     ——[ WARNING ]—————————————————————————————————————————        
-remote:      1 more secrets detected. Remove each secret from your commit history to view more detections.        
-remote:      https://docs.github.com/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning        
-remote:     ——————————————————————————————————————————————————————        
-remote: 
-remote: 
-To github.com:amit31415/Jarvisistent.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 00:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[main 8e2cb4c] Auto-backup: 2026-03-17 01:00:01
- 2 files changed, 365 insertions(+), 20 deletions(-)
- create mode 100644 jarvis_v2.py
-[INFO] Pushing to remote repository...
-remote: error: GH013: Repository rule violations found for refs/heads/main.        
-remote: 
-remote: - GITHUB PUSH PROTECTION        
-remote:   —————————————————————————————————————————        
-remote:     Resolve the following violations before pushing again        
-remote: 
-remote:     - Push cannot contain secrets        
-remote: 
-remote:             
-remote:      (?) Learn how to resolve a blocked push        
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
-remote:             
-remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
-remote:      Visit the repository settings page, https://github.com/amit31415/Jarvisistent/settings/security_analysis        
-remote:             
-remote:             
-remote:       —— Google OAuth Access Token —————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2zYt1yGZWYenyx3v8lS8Hwynp        
-remote:             
-remote:             
-remote:       —— Google OAuth Access Token —————————————————————————        
-remote:        locations:        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGUGGyK7UK2pZ9bceV66Qzhy        
-remote:             
-remote:             
-remote:       —— Google OAuth Client ID ————————————————————————————        
-remote:        locations:        
-remote:          - commit: 2f5e23c83bcb4bd642f7724226330ea9331dfabc        
-remote:            path: credentials.json:1        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGRTLGcxZZqe8M4bTiHjIodx        
-remote:             
-remote:             
-remote:       —— Google OAuth Refresh Token ————————————————————————        
-remote:        locations:        
-remote:          - commit: b3a4dc87105ba0edf9eef4d3f488d88beff8e0ae        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2zYq72U59bRq1SY6cYoPAWw14        
-remote:             
-remote:             
-remote:       —— Google OAuth Refresh Token ————————————————————————        
-remote:        locations:        
-remote:          - commit: f130f8f59c1bd553cdf45385ab44292c5c326de9        
-remote:            path: token.json:1        
-remote:             
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
-remote:        https://github.com/amit31415/Jarvisistent/security/secret-scanning/unblock-secret/3B2sGSAeFf47FcX1oS5m2RuMmNu        
-remote:             
-remote:             
-remote:     ——[ WARNING ]—————————————————————————————————————————        
-remote:      1 more secrets detected. Remove each secret from your commit history to view more detections.        
-remote:      https://docs.github.com/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning        
-remote:     ——————————————————————————————————————————————————————        
-remote: 
-remote: 
-To github.com:amit31415/Jarvisistent.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'github.com:amit31415/Jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 01:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-On branch dev
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	../.gitignore
-
-nothing added to commit but untracked files present (use "git add" to track)
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 11:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-On branch dev
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	../.gitignore
-
-nothing added to commit but untracked files present (use "git add" to track)
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 12:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] No changes to backup. Directory is clean.
-[INFO] Starting auto-backup for Jarvis OS...
 [INFO] No changes to backup. Directory is clean.
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
-[dev 89d7b38] Auto-backup: 2026-03-17 15:00:01
- 1 file changed, 3 insertions(+), 2 deletions(-)
+[dev 956bea0] Auto-backup: 2026-03-19 02:00:01
+ 2 files changed, 47 insertions(+), 4 deletions(-)
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 15:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 02:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
-[dev 746555b] Auto-backup: 2026-03-17 16:00:01
+On branch dev
+Your branch is up to date with 'origin/dev'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 12:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 142a181] Auto-backup: 2026-03-19 17:00:01
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 20:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 21:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-19 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-20 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-20 01:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-20 02:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-20 03:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-20 04:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev d5f5da3] Auto-backup: 2026-03-25 11:00:01
+ 2 files changed, 112 insertions(+)
+ create mode 100644 core_production/study_mode.py
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 11:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 14:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 0171623] Auto-backup: 2026-03-25 15:00:01
+ 2 files changed, 154 insertions(+), 68 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev a3674f2] Auto-backup: 2026-03-25 16:00:01
+ 2 files changed, 35 insertions(+), 26 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 20:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 21:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-25 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev f7100b7] Auto-backup: 2026-03-26 09:00:01
+ 2 files changed, 576 insertions(+), 63 deletions(-)
+ create mode 100644 core_production/jarvis.py
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 09:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 329415f] Auto-backup: 2026-03-26 10:00:01
+ 2 files changed, 26 insertions(+), 5 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 10:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 9d6abf3] Auto-backup: 2026-03-26 11:00:01
+ 2 files changed, 207 insertions(+), 70 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 11:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 10e693a] Auto-backup: 2026-03-26 12:00:01
+ 1 file changed, 35 insertions(+), 49 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 12:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 13:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 14:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 1812243] Auto-backup: 2026-03-26 23:00:01
+ 1 file changed, 13 insertions(+), 4 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-26 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 9 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 9 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 01:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 9 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 03:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 4cec1f4] Auto-backup: 2026-03-27 04:00:01
+ 2 files changed, 168 insertions(+), 1 deletion(-)
+ create mode 100644 core_production/alarm_mode.py
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 04:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev b8ad619] Auto-backup: 2026-03-27 12:00:02
+ 2 files changed, 82 insertions(+), 101 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 12:00:02
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 13:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 14:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-27 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev ca469b4] Auto-backup: 2026-03-28 21:00:01
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-28 21:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-28 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-28 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 01:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 02:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 03:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 04:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev ce0c261] Auto-backup: 2026-03-29 05:00:01
+ 1 file changed, 21 insertions(+), 8 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 05:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 06:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 07:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 08:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 09:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 10:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev f3717b9] Auto-backup: 2026-03-29 11:00:01
+ 1 file changed, 20 insertions(+), 3 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 11:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev ac76584] Auto-backup: 2026-03-29 12:00:01
+ 1 file changed, 37 insertions(+), 16 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 12:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 0b00e03] Auto-backup: 2026-03-29 13:00:01
+ 1 file changed, 33 insertions(+), 7 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 13:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 14:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 15:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 16:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 17:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 6d9b7d4] Auto-backup: 2026-03-29 18:00:01
+ 1 file changed, 9 insertions(+), 27 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 18:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 19:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 20:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 21:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 22:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 3a010e6] Auto-backup: 2026-03-29 23:00:01
+ 1 file changed, 237 insertions(+), 137 deletions(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-29 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 01:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 02:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 03:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 04:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 05:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 06:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 07:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 08:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 09:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 10:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 11:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 8 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 12:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev d3fc0c7] Auto-backup: 2026-03-30 13:00:01
  1 file changed, 1 insertion(+), 1 deletion(-)
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 16:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 13:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+[dev 13578d7] Auto-backup: 2026-03-30 16:00:01
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 16:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
-	modified:   ../response.mp3
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
 
-no changes added to commit (use "git add" and/or "git commit -a")
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 17:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-On branch dev
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 18:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-On branch dev
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
-	modified:   ../response.mp3
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 19:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[dev 13d245f] Auto-backup: 2026-03-17 20:00:01
- 1 file changed, 17 insertions(+)
- create mode 100644 core_production/get_token.py
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 20:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[dev e2cc6b6] Auto-backup: 2026-03-17 21:00:01
- 1 file changed, 6 insertions(+), 4 deletions(-)
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 21:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-On branch dev
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
-	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-17 22:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[dev a689150] Auto-backup: 2026-03-18 15:00:01
- 2 files changed, 31 insertions(+)
- create mode 100644 core_production/jarvis_memory.json
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 15:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 17:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 16:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 18:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 17:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 19:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 18:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 20:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
-	../token.json
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 19:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 21:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
-	../token.json
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 20:00:01
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[dev 9b4a350] Auto-backup: 2026-03-18 21:00:02
- 2 files changed, 50 insertions(+), 1 deletion(-)
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 21:00:02
-[INFO] Starting auto-backup for Jarvis OS...
-[INFO] Changes detected. Adding to Git...
-[dev e3eb6eb] Auto-backup: 2026-03-18 22:00:01
- 1 file changed, 7 insertions(+), 8 deletions(-)
-[INFO] Pushing to remote repository...
-error: src refspec main does not match any
-error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 22:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 22:00:01
 [INFO] Starting auto-backup for Jarvis OS...
 [INFO] Changes detected. Adding to Git...
 On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   ../local_sandboxes/.env
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
 	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../jarvis_v2.log
-	../token.json
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [INFO] Pushing to remote repository...
 error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
-[SUCCESS] Backup completed: Auto-backup: 2026-03-18 23:00:01
+[SUCCESS] Backup completed: Auto-backup: 2026-03-30 23:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-31 00:00:01
+[INFO] Starting auto-backup for Jarvis OS...
+[INFO] Changes detected. Adding to Git...
+On branch dev
+Your branch is ahead of 'origin/dev' by 10 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../alarms_memory.json
+	modified:   ../jarvis_v2.log
+	modified:   ../response.mp3
+	modified:   ../study_alert.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../YaFat3.mp3
+	../alarms/
+	"../jarvis_memory/general/\327\220\327\240\327\231.txt"
+	"../jarvis_memory/general/\327\252\327\225\327\241\327\231\327\243.txt"
+	../study_stats.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[INFO] Pushing to remote repository...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/amit31415/jarvisistent.git'
+[SUCCESS] Backup completed: Auto-backup: 2026-03-31 01:00:01

@@ -1,7 +1,7 @@
 import os
 
 # Base directory for Jarvis's local offline memory
-MEMORY_DIR = "/home/kido1/Smartroom/jarvis_memory"
+MEMORY_DIR = "/home/kido1/Smartroom/data/jarvis_memory"
 DEFAULT_FOLDER = "general"
 
 def init_memory():
